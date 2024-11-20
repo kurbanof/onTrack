@@ -20,18 +20,18 @@ function goTo(page) {
 </script>
 
 <template>
-  <TheHeader
+  <TheHeader class="mb-7"
   @go-to-progress="goTo(PAGE_PROGRESS)"
   @go-to-timeline="goTo(PAGE_TIMELINE)"
   />
 
-  <main class="flex flex-grow flex-col">
+  <main class="flex flex-grow flex-col mb-7" >
     <TheTimeline v-show="currentPage === PAGE_TIMELINE" />
     <TheActivities v-show="currentPage === PAGE_ACTIVITIES" />
     <TheProgress v-show="currentPage === PAGE_PROGRESS" />
   </main>
 
-  <TheNav :current-page="currentPage" @navigate="goTo($event)" />
+  <TheNav :current-page="currentPage" @navigate="goTo($event)"  />
 </template>
 
 <style scoped></style>
