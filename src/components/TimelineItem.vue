@@ -10,7 +10,7 @@ const options = [
 ]
 
 const hourLinkClasses = [
-  ' absolute -top-4 left-1/2 block -translate-x-1/2 rounded px-2 font-mono text-lg',
+  ' absolute -top-4 left-1/2 block -translate-x-1/2 rounded px-2 text-lg',
   props.timelineItem.hour === new Date().getHours()
     ? 'bg-green-500 text-white font-black'
     : 'text-grey-500 bg-gray-100  ',
@@ -26,9 +26,13 @@ const hourLinkClasses = [
       >
         <XMarkIcon class="h-8" />
       </button>
-      <select name="" id="" class="outline-none rounden w-full truncate rounded bg-gray-100 px-2 py-1 text-2xl">
+      <select
+        name=""
+        id=""
+        class="rounden w-full truncate rounded bg-gray-100 px-2 py-1 text-2xl outline-none"
+      >
         <option selected disabled value="">Rest</option>
-        <option v-for="{ value, label } in options" :key:="value" :value="value">
+        <option v-for="{ value, label } in options" :key="value" :value="value">
           {{ label }}
         </option>
       </select>
