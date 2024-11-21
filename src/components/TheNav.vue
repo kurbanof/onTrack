@@ -7,7 +7,7 @@ const emit = defineEmits(['navigate'])
 </script>
 
 <template>
-  <nav class="sticky bottom-0 z-10 bg-white ">
+  <nav class="sticky bottom-0 z-10 bg-white">
     <ul class="flex items-center justify-around">
       <NavItem
         v-for="(icon, page) in NAV_ITEMS"
@@ -15,7 +15,7 @@ const emit = defineEmits(['navigate'])
         :href="`#${page}`"
         @click="emit('navigate', page)"
         :class="{
-          ' bg-black text-white duration-200': currentPage === page,
+          'bg-black text-white duration-200': currentPage === page,
         }"
       >
         <component :is="icon" class="h-6 w-6" />
