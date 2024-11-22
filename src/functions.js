@@ -1,4 +1,4 @@
-import { NAV_ITEMS, PAGE_TIMELINE, HOUR_OF_DAY } from './constants'
+import { NAV_ITEMS, PAGE_TIMELINE, HOURS_IN_DAY } from './constants'
 
 export function normalizePageHash() {
   const hash = window.location.hash.slice(1)
@@ -14,7 +14,7 @@ export function normalizePageHash() {
 
 export function generateTimelineItems() {
   const timelineItems = []
-  for (let hour = 0; hour < HOUR_OF_DAY; hour++) {
+  for (let hour = 0; hour < HOURS_IN_DAY; hour++) {
     timelineItems.push({ hour })
   }
   return timelineItems
