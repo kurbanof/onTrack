@@ -1,5 +1,15 @@
 <script setup>
-defineProps(['options', 'placeholder', 'selected'])
+defineProps({
+  selected: Number,
+  placeholder: {
+    required: true,
+    type: String,
+  },
+  options: {
+    required: true,
+    type: Array,
+  },
+})
 </script>
 <template>
   <select class="rounden w-full truncate rounded bg-gray-100 px-2 py-1 text-2xl outline-none">
@@ -8,7 +18,7 @@ defineProps(['options', 'placeholder', 'selected'])
       v-for="{ value, label } in options"
       :key="value"
       :value="value"
-      :selected="(value === selected)"
+      :selected="value === selected"
     >
       {{ label }}
     </option>
