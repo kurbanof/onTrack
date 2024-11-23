@@ -1,17 +1,15 @@
 <script setup>
 import { XMarkIcon } from '@heroicons/vue/24/outline'
-import { HOURS_IN_DAY } from '../constants'
 import BaseSelect from './UI/BaseSelect.vue'
 import BaseButton from './UI/BaseButton.vue'
+import { isTimelineItemValid } from '@/validators';
 
 const props = defineProps({
   timelineItem: {
     required: true,
     type: Object,
-    validator({ hour }) {
-      return typeof hour === 'number' && hour >=  0 && hour < HOURS_IN_DAY
-    },
-  },
+    validator: isTimelineItemValid
+  }
 })
 
 const options = [
