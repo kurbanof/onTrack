@@ -3,7 +3,7 @@ import { isPageValid } from '@/validators'
 
 export function normalizePageHash() {
   const page = window.location.hash.slice(1)
-  
+
   if (isPageValid) {
     window.location.hash = page
     return page

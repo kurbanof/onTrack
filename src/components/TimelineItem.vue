@@ -25,7 +25,8 @@ const hourLinkClasses = [
     : 'text-grey-500 bg-gray-100  ',
 ]
 
-const selectedActivityId = 1
+const selectedActivityId = 11111
+// временно указан не существующее значение
 </script>
 
 <template>
