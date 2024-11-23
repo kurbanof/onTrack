@@ -1,12 +1,13 @@
-import { NAV_ITEMS, PAGE_TIMELINE, HOURS_IN_DAY } from './constants'
+import { PAGE_TIMELINE, HOURS_IN_DAY } from './constants'
+import { isPageValid } from '@/validators'
 
 export function normalizePageHash() {
-  const hash = window.location.hash.slice(1)
-  if (Object.keys(NAV_ITEMS).includes(hash)) {
-    window.location.hash = hash
-    return hash
+  const page = window.location.hash.slice(1)
+  
+  if (isPageValid) {
+    window.location.hash = page
+    return page
   } else {
-    console.log(hash)
     window.location.hash = PAGE_TIMELINE
     return PAGE_TIMELINE
   }

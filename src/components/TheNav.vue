@@ -10,7 +10,9 @@ defineProps({
     validator: isPageValid
   },
 })
-const emit = defineEmits(['navigate'])
+const emit = defineEmits({
+  navigator: isPageValid
+})
 </script>
 
 <template>

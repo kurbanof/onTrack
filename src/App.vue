@@ -3,7 +3,7 @@ import { ref } from 'vue'
 
 import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from './constants'
 
-import { normalizePageHash,generateTimelineItems } from './functions'
+import { normalizePageHash, generateTimelineItems } from './functions'
 
 import TheHeader from './components/TheHeader.vue'
 import TheNav from './components/TheNav.vue'
@@ -21,19 +21,14 @@ function goTo(page) {
 }
 </script>
 
-<template  >
+<template>
+  <TheHeader class="mb-7" @navigate="goTo($event)" />
 
-  <TheHeader class="mb-7"
-  @go-to-progress="goTo(PAGE_PROGRESS)"
-  @go-to-timeline="goTo(PAGE_TIMELINE)"
-  />
-
-  <main class="flex flex-grow flex-col mb-7 " >
-    <TheTimeline v-show="currentPage === PAGE_TIMELINE" :timeline-items="timelineItems"/>
+  <main class="mb-7 flex flex-grow flex-col">
+    <TheTimeline v-show="currentPage === PAGE_TIMELINE" :timeline-items="timelineItems" />
     <TheActivities v-show="currentPage === PAGE_ACTIVITIES" />
     <TheProgress v-show="currentPage === PAGE_PROGRESS" />
   </main>
 
-  <TheNav :current-page="currentPage" @navigate="goTo($event)"  />
+  <TheNav :current-page="currentPage" @navigate="goTo($event)" />
 </template>
-
