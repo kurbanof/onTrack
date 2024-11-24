@@ -1,10 +1,9 @@
-import { PAGE_TIMELINE, HOURS_IN_DAY } from './constants'
+import { PAGE_TIMELINE, HOURS_IN_DAY, MIDNIGT_HOUR } from './constants'
 import { isPageValid } from '@/validators'
 
 export function normalizePageHash() {
   const page = window.location.hash.slice(1)
-
-  if (isPageValid) {
+  if (isPageValid(page)) {
     window.location.hash = page
     return page
   } else {
@@ -15,7 +14,7 @@ export function normalizePageHash() {
 
 export function generateTimelineItems() {
   const timelineItems = []
-  for (let hour = 0; hour < HOURS_IN_DAY; hour++) {
+  for (let hour = MIDNIGT_HOUR; hour < HOURS_IN_DAY; hour++) {
     timelineItems.push({ hour })
   }
   return timelineItems

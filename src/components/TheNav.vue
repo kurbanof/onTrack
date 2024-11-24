@@ -11,7 +11,7 @@ defineProps({
   },
 })
 const emit = defineEmits({
-  navigator: isPageValid
+  navigate: isPageValid
 })
 </script>
 
