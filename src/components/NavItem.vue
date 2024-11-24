@@ -5,9 +5,12 @@ defineOptions({
 </script>
 
 <template>
-  <li class="flex-1 duration-200 hover:bg-slate-100 border-x border-t rounded-t-lg ">
-    <a v-bind="$attrs" class="flex flex-col items-center p-2 capitalize rounded-t-lg border-t  ">
-      <slot/>
+  <li class="transition hover:duration-200 flex-1 rounded-t-lg  border-t hover:bg-slate-100">
+    <a
+      v-bind="$attrs"
+      class="duration-900 flex flex-col items-center rounded-t-lg  p-2 capitalize"
+    >
+      <slot />
     </a>
   </li>
 </template>

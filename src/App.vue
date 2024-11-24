@@ -24,7 +24,7 @@ function goTo(page) {
 <template>
   <TheHeader class="mb-7" @navigate="goTo($event)" />
 
-  <main class="mb-7 flex flex-grow flex-col">
+  <main class=" flex flex-grow flex-col">
     <TheTimeline v-show="currentPage === PAGE_TIMELINE" :timeline-items="timelineItems" />
     <TheActivities v-show="currentPage === PAGE_ACTIVITIES" />
     <TheProgress v-show="currentPage === PAGE_PROGRESS" />
@@ -32,3 +32,8 @@ function goTo(page) {
 
   <TheNav :current-page="currentPage" @navigate="goTo($event)" />
 </template>
+<style>
+::-webkit-scrollbar {
+  width: 0;
+}
+</style>
