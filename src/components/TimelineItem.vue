@@ -1,14 +1,14 @@
 <script setup>
-import { ref } from 'vue';
+import { ref } from 'vue'
 import BaseSelect from './UI/BaseSelect.vue'
-import { isTimelineItemValid } from '@/validators';
+import { isTimelineItemValid } from '@/validators'
 
 const props = defineProps({
   timelineItem: {
     required: true,
     type: Object,
-    validator: isTimelineItemValid
-  }
+    validator: isTimelineItemValid,
+  },
 })
 
 const options = [
@@ -25,14 +25,17 @@ const hourLinkClasses = [
 ]
 
 const selectedActivityId = ref()
-// временно указан не существующее значение
+
 </script>
 
 <template>
   <li class="relative flex flex-col gap-2 border-t-4 border-gray-100 px-4 py-10">
     <a href="#" :class="hourLinkClasses">{{ timelineItem.hour }}:00</a>
 
-      <BaseSelect :options="options" placeholder="Rest" v-model:selected-model="selectedActivityId" @select="selectedActivityId = $event" />
-
+    <BaseSelect
+      :options="options"
+      placeholder="Rest"
+      v-model:modelValue="selectedActivityId"
+    />
   </li>
 </template>

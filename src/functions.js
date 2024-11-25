@@ -1,6 +1,7 @@
 import { PAGE_TIMELINE, HOURS_IN_DAY, MIDNIGT_HOUR } from './constants'
 import { isPageValid } from '@/validators'
 
+
 export function normalizePageHash() {
   const page = window.location.hash.slice(1)
   if (isPageValid(page)) {
