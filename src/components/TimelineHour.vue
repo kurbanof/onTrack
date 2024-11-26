@@ -1,5 +1,5 @@
 <script setup>
-import { isHourValid } from '@/validators';
+import { isHourValid } from '@/validators'
 const props = defineProps({
   hour: {
     required: true,
@@ -15,7 +15,7 @@ const classes = [
     : 'text-grey-500 bg-gray-100  ',
 ]
 
-const formattedHour = `${props.hour.toString().padStart(2,0)}:00`
+const formattedHour = `${props.hour.toString().padStart(2, 0)}:00`
 </script>
 <template>
   <a href="#" :class="classes">{{ formattedHour }}</a>
