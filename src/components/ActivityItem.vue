@@ -6,20 +6,17 @@ import { TrashIcon } from '@heroicons/vue/24/outline'
 import BaseButton from '@/components/UI/BaseButton.vue'
 import BaseSelect from '@/components/UI/BaseSelect.vue'
 
+import { isActivityValid } from '@/validators'
+import { PERIOD_SELECT_OPTIONS } from '@/constants'
+
 defineProps({
   activity: {
-    requared: true,
-    type: String
+    required: true,
+    type: String,
+    validator: isActivityValid
+
   }
 })
-
-
-const periodSelectOptions = [
-  { value: 15, label: '00:15' },
-  { value: 30, label: '00:30' },
-  { value: 45, label: '00:45' },
-  { value: 60, label: '01:00' },
-]
 
 const minutesToComplete = ref(null)
 
@@ -31,7 +28,7 @@ const minutesToComplete = ref(null)
       <span class="block truncate text-xl">{{ activity }}</span>
     </div>
     <div>
-      <BaseSelect class="font-mono" placeholder="hh:mm" :options="periodSelectOptions" v-model="minutesToComplete"/>
+      <BaseSelect class="font-mono" placeholder="hh:mm" :options="PERIOD_SELECT_OPTIONS" v-model="minutesToComplete"/>
     </div>
   </li>
 </template>

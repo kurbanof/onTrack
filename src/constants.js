@@ -11,5 +11,9 @@ export const NAV_ITEMS = {
   [PAGE_ACTIVITIES]: ListBulletIcon,
   [PAGE_PROGRESS]: ChartBarIcon,
 }
-
-// console.log(Object.keys(NAV_ITEMS).find(key => NAV_ITEMS[key] === NAV_ITEMS[PAGE_TIMELINE]))
+export const PERIOD_SELECT_OPTIONS = [
+  { value: 15, label: '00:15' },
+  { value: 30, label: '00:30' },
+  { value: 45, label: '00:45' },
+  { value: 60, label: '01:00' },
+]
