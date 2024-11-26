@@ -24,6 +24,7 @@ watchEffect(() => {
   if (isNotSelected.value) {
     model.value = ''
   }
+  //this is defaultSelectValue
 })
 </script>
 <template>
