@@ -24,9 +24,9 @@ const emit = defineEmits({
         :href="`#${page}`"
         @click="emit('navigate', page)"
         :class="{
-          'bg-black text-white transition duration-200': currentPage === page,
+          'bg-slate-100 transition duration-200': currentPage === page,
           'border-x': page === PAGE_ACTIVITIES,
-          
+
         }"
       >
         <component :is="icon" class="h-6 w-6" />

@@ -25,7 +25,7 @@ const emit = defineEmits({
         @delete="emit('deleteActivity', activity)"
       />
     </ul>
-    <form class="sticky bottom-[64.5px] flex gap-2 border-y-4 bg-white p-5">
+    <form class="sticky bottom-[71px] flex gap-2 border-t-4  bg-white p-5">
       <input
         type="text"
         placeholder="Activity name"
