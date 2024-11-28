@@ -15,7 +15,7 @@ defineProps({
     validator: validateSelectOptions,
   },
 })
-
+const emit = defineEmits(['update:modelValue']);
 const model = defineModel()
 
 const isNotSelected = computed(() => isUndefinedOrNull(model.value))
@@ -29,7 +29,7 @@ watchEffect(() => {
 </script>
 <template>
   <div class="flex gap-2">
-    <BaseButton @click="$emit('update:modelValue', null)">
+    <BaseButton @click="emit('update:modelValue', null)">
       <XMarkIcon class="h-8" />
     </BaseButton>
     <select

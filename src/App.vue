@@ -20,8 +20,13 @@ const currentPage = ref(normalizePageHash())
 
 const timelineItems = generateTimelineItems()
 
-const activities = ['Coding', 'Reading', 'Training']
-const activitySelectOptions = generateActivitySelectOptions(activities)
+const activities = ref(['Coding', 'Reading', 'Training'])
+function deleteActivity(activity) {
+  console.log(activity);
+  activities.value.splice(activities.value.indexOf(activity), 1)
+}
+
+const activitySelectOptions = generateActivitySelectOptions(activities.value)
 
 function goTo(page) {
   currentPage.value = page
@@ -32,8 +37,16 @@ function goTo(page) {
   <TheHeader class="mb-7" @navigate="goTo($event)" />
 
   <main class="flex flex-grow flex-col">
-    <TheTimeline v-show="currentPage === PAGE_TIMELINE" :timeline-items="timelineItems" :activity-select-options="activitySelectOptions"/>
-    <TheActivities v-show="currentPage === PAGE_ACTIVITIES" :activities="activities" />
+    <TheTimeline
+      v-show="currentPage === PAGE_TIMELINE"
+      :timeline-items="timelineItems"
+      :activity-select-options="activitySelectOptions"
+    />
+    <TheActivities
+      v-show="currentPage === PAGE_ACTIVITIES"
+      :activities="activities"
+      @delete-activity="deleteActivity"
+    />
     <TheProgress v-show="currentPage === PAGE_PROGRESS" />
   </main>
 
