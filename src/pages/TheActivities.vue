@@ -1,6 +1,9 @@
 <script setup>
 import ActivityItem from '@/components/ActivityItem.vue'
+import BaseButton from '@/components/UI/BaseButton.vue'
+import { BUTTON_TYPE_PRIMARY } from '@/constants'
 import { isActivityValid, validateActivities } from '@/validators'
+import { PlusIcon } from '@heroicons/vue/24/outline'
 defineProps({
   activities: {
     requared: true,
@@ -13,7 +16,7 @@ const emit = defineEmits({
 })
 </script>
 <template>
-  <div>
+  <div class="flex flex-grow flex-col justify-between">
     <ul>
       <ActivityItem
         v-for="activity in activities"
@@ -22,5 +25,15 @@ const emit = defineEmits({
         @delete="emit('deleteActivity', activity)"
       />
     </ul>
+    <form class="sticky bottom-[64.5px] flex gap-2 border-y-4 bg-white p-5">
+      <input
+        type="text"
+        placeholder="Activity name"
+        class="w-full gap-2 rounded border-2 px-4 text-xl outline-none hover:bg-purple-100/50 focus:bg-purple-100/50"
+      />
+      <BaseButton :type="BUTTON_TYPE_PRIMARY">
+        <PlusIcon class="h-8" />
+      </BaseButton>
+    </form>
   </div>
 </template>

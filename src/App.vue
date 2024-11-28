@@ -43,6 +43,7 @@ function goTo(page) {
       :activity-select-options="activitySelectOptions"
     />
     <TheActivities
+    
       v-show="currentPage === PAGE_ACTIVITIES"
       :activities="activities"
       @delete-activity="deleteActivity"

@@ -28,7 +28,7 @@ const minutesToComplete = ref(null)
       <BaseButton :type="BUTTON_TYPE_DANGER" class="rounded-none" @click="emit('delete')">
         <TrashIcon class="h-8" />
       </BaseButton>
-      <span class="block truncate text-2xl"> {{ activity }}</span>
+      <span class="block truncate text-2xl h-full"> {{ activity }}</span>
     </div>
     <div>
       <BaseSelect
