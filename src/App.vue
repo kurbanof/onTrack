@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from './constants'
 
@@ -22,7 +22,8 @@ const timelineItems = generateTimelineItems()
 
 const activities = ref(['Coding', 'Reading', 'Training'])
 
-const activitySelectOptions = generateActivitySelectOptions(activities.value)
+const activitySelectOptions = computed(() => generateActivitySelectOptions(activities.value))
+// const activitySelectOptions = generateActivitySelectOptions(activities.value)
 
 function createActivity(activity) {
   activities.value.push(activity)
