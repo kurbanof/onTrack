@@ -10,6 +10,7 @@ export const PAGE_TIMELINE = 'timeline'
 export const PAGE_ACTIVITIES = 'activities'
 export const PAGE_PROGRESS = 'progress'
 
+export const SECONDS_IN_HOUR = 3600
 export const HOURS_IN_DAY = 24
 export const MIDNIGT_HOUR = 0
 

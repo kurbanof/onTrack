@@ -7,6 +7,8 @@ import {
   normalizePageHash,
   generateTimelineItems,
   generateActivitySelectOptions,
+  generateActivities,
+  id,
 } from './functions'
 
 import TheHeader from './components/TheHeader.vue'
@@ -20,13 +22,17 @@ const currentPage = ref(normalizePageHash())
 
 const timelineItems = generateTimelineItems()
 
-const activities = ref(['Coding', 'Reading', 'Training'])
+const activities = ref(generateActivities())
 
 const activitySelectOptions = computed(() => generateActivitySelectOptions(activities.value))
 // const activitySelectOptions = generateActivitySelectOptions(activities.value)
 
-function createActivity(activity) {
-  activities.value.push(activity)
+function createActivity(name) {
+  activities.value.push({
+    id: id(),
+    name,
+    secondsToComplete: 0,
+  })
 }
 function deleteActivity(activity) {
   console.log(activity)
