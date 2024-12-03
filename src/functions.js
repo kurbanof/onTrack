@@ -13,23 +13,11 @@ export function normalizePageHash() {
 }
 
 export function generateActivities() {
-  return [
-    {
-      id: id(),
-      name: 'Coding',
-      secondsToComplete: 0 * SECONDS_IN_HOUR,
-    },
-    {
-      id: id(),
-      name: 'Reading',
-      secondsToComplete: 1 * SECONDS_IN_HOUR,
-    },
-    {
-      id: id(),
-      name: 'Training',
-      secondsToComplete: 2 * SECONDS_IN_HOUR,
-    },
-  ]
+  return ['Coding', 'Reading', 'Training'].map((name, hours) => ({
+    id: id(),
+    name,
+    secondsToComplete: hours * SECONDS_IN_HOUR,
+  }))
 }
 
 export function generateTimelineItems() {
@@ -45,7 +33,5 @@ export function generateActivitySelectOptions(activities) {
 }
 
 export function id() {
- return Date.now().toString(36) + Math.random().toString(36).substring(3)
-
-
+  return Date.now().toString(36) + Math.random().toString(36).substring(3)
 }

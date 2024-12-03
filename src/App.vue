@@ -8,7 +8,7 @@ import {
   generateTimelineItems,
   generateActivitySelectOptions,
   generateActivities,
-  id,
+  
 } from './functions'
 
 import TheHeader from './components/TheHeader.vue'
@@ -27,12 +27,8 @@ const activities = ref(generateActivities())
 const activitySelectOptions = computed(() => generateActivitySelectOptions(activities.value))
 // const activitySelectOptions = generateActivitySelectOptions(activities.value)
 
-function createActivity(name) {
-  activities.value.push({
-    id: id(),
-    name,
-    secondsToComplete: 0,
-  })
+function createActivity(activity) {
+  activities.value.push(activity)
 }
 function deleteActivity(activity) {
   console.log(activity)
