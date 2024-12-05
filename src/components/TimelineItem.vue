@@ -1,15 +1,14 @@
 <script setup>
-import { XMarkIcon } from '@heroicons/vue/24/outline'
+import { ref } from 'vue'
 import BaseSelect from './UI/BaseSelect.vue'
-import BaseButton from './UI/BaseButton.vue'
-import { isTimelineItemValid } from '@/validators';
+import { isTimelineItemValid } from '@/validators'
 
 const props = defineProps({
   timelineItem: {
     required: true,
     type: Object,
-    validator: isTimelineItemValid
-  }
+    validator: isTimelineItemValid,
+  },
 })
 
 const options = [
@@ -25,18 +24,18 @@ const hourLinkClasses = [
     : 'text-grey-500 bg-gray-100  ',
 ]
 
-const selectedActivityId = 11111
+const selectedActivityId = ref(1)
 // временно указан не существующее значение
 </script>
 
 <template>
   <li class="relative flex flex-col gap-2 border-t-4 border-gray-100 px-4 py-10">
     <a href="#" :class="hourLinkClasses">{{ timelineItem.hour }}:00</a>
-    <div class="flex gap-2">
-      <BaseButton>
-        <XMarkIcon class="h-8" />
-      </BaseButton>
-      <BaseSelect :options="options" placeholder="Rest" :selected="selectedActivityId" />
-    </div>
+      <BaseSelect
+        :options="options"
+        placeholder="Rest"
+        :selected="selectedActivityId"
+        @select="selectedActivityId = $event"
+      />
   </li>
 </template>
