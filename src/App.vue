@@ -8,7 +8,6 @@ import {
   generateTimelineItems,
   generateActivitySelectOptions,
   generateActivities,
-  
 } from './functions'
 
 import TheHeader from './components/TheHeader.vue'
@@ -25,7 +24,6 @@ const timelineItems = generateTimelineItems()
 const activities = ref(generateActivities())
 
 const activitySelectOptions = computed(() => generateActivitySelectOptions(activities.value))
-// const activitySelectOptions = generateActivitySelectOptions(activities.value)
 
 function createActivity(activity) {
   activities.value.push(activity)
@@ -37,6 +35,10 @@ function deleteActivity(activity) {
 function goTo(page) {
   currentPage.value = page
 }
+function setTimelineItemActivity({ timelineItem, activity }) {
+  timelineItem.activityId = activity.id
+  console.log(timelineItem.activityId);
+}
 </script>
 
 <template>
@@ -46,7 +48,9 @@ function goTo(page) {
     <TheTimeline
       v-show="currentPage === PAGE_TIMELINE"
       :timeline-items="timelineItems"
+      :activities="activities"
       :activity-select-options="activitySelectOptions"
+      @set-timeline-item-activity="setTimelineItemActivity"
     />
     <TheActivities
       v-show="currentPage === PAGE_ACTIVITIES"

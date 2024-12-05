@@ -23,7 +23,10 @@ export function generateActivities() {
 export function generateTimelineItems() {
   const timelineItems = []
   for (let hour = MIDNIGT_HOUR; hour < HOURS_IN_DAY; hour++) {
-    timelineItems.push({ hour })
+    timelineItems.push({
+      hour,
+      activityId: null,
+    })
   }
   return timelineItems
 }

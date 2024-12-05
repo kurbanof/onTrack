@@ -35,7 +35,8 @@ const secondsToComplete = ref(null)
         class="font-mono"
         placeholder="hh:mm"
         :options="PERIOD_SELECT_OPTIONS"
-        v-model="secondsToComplete"
+        :selected="secondsToComplete"
+        @select="secondsToComplete = $event"
       />
     </div>
   </li>

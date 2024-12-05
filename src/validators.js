@@ -17,16 +17,16 @@ export function isTimelineItemValid({ hour }) {
 export function isHourValid(hour) {
   return isNumber(hour) && isBetween(hour, MIDNIGT_HOUR, HOURS_IN_DAY - 1)
 }
-function isBetween(value, start, end) {
-  return value >= start && value <= end
-}
 
 export function validateSelectOptions(options) {
   return options.every(isSelectOptionValid)
 }
+function isBetween(value, start, end) {
+  return value >= start && value <= end
+}
 
 function isSelectOptionValid({ value, label }) {
-  return isNumber(value) || (isString(value) && isNotEmptyString(label))
+  return (isNumber(value) || isNotEmptyString(value)) && isNotEmptyString(label)
 }
 
 export function validateActivities(activities) {
@@ -36,13 +36,23 @@ export function isActivityValid({ id, name, secondsToComplete }) {
   return [isNotEmptyString(id), isNotEmptyString(name), isNumber(secondsToComplete)].every(Boolean)
 }
 
-export function findMatchingOption(options, match) {
-  const item = options.find((item) => item.value === match)
-  return item?.value
-}
+// export function findMatchingOption(options, match) {
+//   const item = options.find((item) => item.value === match)
+//   return item?.value
+// }
 
 export function isNotEmptyString(value) {
   return isString(value) && value.length > 0
+}
+export function isUndefinedOrNull(value) {
+  return isUndefined(value) || isNull(value)
+}
+
+export function isUndefined(value) {
+  return value === undefined
+}
+export function isNumberOrNull(value) {
+  return isNumber(value) || isNull(value)
 }
 function isString(value) {
   return typeof value === 'string'
@@ -51,13 +61,6 @@ function isNumber(value) {
   return typeof value === 'number'
 }
 
-export function isUndefinedOrNull(value) {
-  return isUndefined(value) || isNull(value)
-}
-
-export function isUndefined(value) {
-  return value === undefined
-}
 function isNull(value) {
   return value === null
 }
