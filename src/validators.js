@@ -24,7 +24,7 @@ export function isNumberOrNull(value) {
 export function isUndefinedOrNull(value) {
   return isUndefined(value) || isNull(value)
 }
-function isHourValid(hour) {
+export function isHourValid(hour) {
   return isNumber(hour) && isBetween(hour, MIDNIGT_HOUR, HOURS_IN_DAY - 1)
 }
 function isBetween(value, start, end) {
