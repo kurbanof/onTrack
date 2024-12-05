@@ -26,17 +26,22 @@ export function validateSelectOptions(options) {
 }
 
 function isSelectOptionValid({ value, label }) {
-  return isNumber(value) || isString(value) && isNotEmptyString(label)
+  return isNumber(value) || (isString(value) && isNotEmptyString(label))
 }
 
 export function validateActivities(activities) {
   return activities.every(isActivityValid)
 }
-export function isActivityValid({id, name, secondsToComplete}) {
+export function isActivityValid({ id, name, secondsToComplete }) {
   return [isNotEmptyString(id), isNotEmptyString(name), isNumber(secondsToComplete)].every(Boolean)
 }
 
-function isNotEmptyString(value) {
+export function findMatchingOption(options, match) {
+  const item = options.find((item) => item.value === match)
+  return item?.value
+}
+
+export function isNotEmptyString(value) {
   return isString(value) && value.length > 0
 }
 function isString(value) {

@@ -31,7 +31,6 @@ function createActivity(activity) {
   activities.value.push(activity)
 }
 function deleteActivity(activity) {
-  console.log(activity)
   activities.value.splice(activities.value.indexOf(activity), 1)
 }
 

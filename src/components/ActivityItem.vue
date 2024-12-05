@@ -17,10 +17,10 @@ defineProps({
   },
 })
 const emit = defineEmits({
-  delete: isUndefined
-});
+  delete: isUndefined,
+})
 
-const minutesToComplete = ref(null)
+const secondsToComplete = ref(null)
 </script>
 <template>
   <li class="flex flex-col gap-2 p-5">
@@ -28,14 +28,14 @@ const minutesToComplete = ref(null)
       <BaseButton :type="BUTTON_TYPE_DANGER" class="rounded-none" @click="emit('delete')">
         <TrashIcon class="h-8" />
       </BaseButton>
-      <span class="block truncate text-2xl h-full"> {{ activity.name }}</span>
+      <span class="block h-full truncate text-2xl"> {{ activity.name }}</span>
     </div>
     <div>
       <BaseSelect
         class="font-mono"
         placeholder="hh:mm"
         :options="PERIOD_SELECT_OPTIONS"
-        v-model="minutesToComplete"
+        v-model="secondsToComplete"
       />
     </div>
   </li>

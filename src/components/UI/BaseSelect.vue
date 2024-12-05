@@ -1,10 +1,10 @@
 <script setup>
-import { validateSelectOptions, isUndefinedOrNull } from '@/validators'
+import { validateSelectOptions, isUndefinedOrNull, findMatchingOption } from '@/validators'
 import { XMarkIcon } from '@heroicons/vue/24/outline'
 import BaseButton from './BaseButton.vue'
-import { computed, watchEffect } from 'vue'
+import { computed, watch } from 'vue'
 
-defineProps({
+const props = defineProps({
   placeholder: {
     required: true,
     type: String,
@@ -15,17 +15,28 @@ defineProps({
     validator: validateSelectOptions,
   },
 })
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits(['update:modelValue'])
 const model = defineModel()
 
-const isNotSelected = computed(() => isUndefinedOrNull(model.value))
+const isNullOrUndefined = computed(() => isUndefinedOrNull(model.value))
 
-watchEffect(() => {
-  if (isNotSelected.value) {
-    model.value = ''
-  }
-  //this is defaultSelectValue
+const noOptionMatches = computed(() => {
+  return !findMatchingOption(props.options, model.value)
 })
+
+const isNotSelected = computed(() => {
+  return (isNullOrUndefined.value || noOptionMatches.value) && model.value !== ''
+})
+
+watch(
+  isNotSelected,
+  () => {
+    if (isNotSelected.value) {
+      model.value = ''
+    }
+  },
+  { immediate: true },
+)
 </script>
 <template>
   <div class="flex gap-2">
@@ -39,7 +50,7 @@ watchEffect(() => {
       <option disabled value="">
         {{ placeholder }}
       </option>
-      <option v-for="{ value, label } in options" :key="value" :value="value">
+      <option v-for="{ value, label } in options" :key="value" :value="value" >
         {{ label }}
       </option>
     </select>
