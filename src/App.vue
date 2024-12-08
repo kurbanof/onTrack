@@ -1,48 +1,50 @@
 <script setup>
-import { computed, ref } from 'vue'
+  import { computed, ref } from 'vue'
 
-import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from './constants'
+  import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from './constants'
 
-import {
-  normalizePageHash,
-  generateTimelineItems,
-  generateActivitySelectOptions,
-  generateActivities,
-} from './functions'
+  import {
+    normalizePageHash,
+    generateTimelineItems,
+    generateActivitySelectOptions,
+    generateActivities,
+  } from './functions'
 
-import TheHeader from './components/TheHeader.vue'
-import TheNav from './components/TheNav.vue'
-import TheTimeline from './pages/TheTimeline.vue'
-import TheActivities from './pages/TheActivities.vue'
-import TheProgress from './pages/TheProgress.vue'
+  import TheHeader from './components/TheHeader.vue'
+  import TheNav from './components/TheNav.vue'
+  import TheTimeline from './pages/TheTimeline.vue'
+  import TheActivities from './pages/TheActivities.vue'
+  import TheProgress from './pages/TheProgress.vue'
 
-// function normalizePageHash() срабатывает один раз при загрузке или перезагрузке страницы
-const currentPage = ref(normalizePageHash())
+  const currentPage = ref(normalizePageHash())
 
-const timelineItems = generateTimelineItems()
+  const timelineItems = generateTimelineItems()
 
-const activities = ref(generateActivities())
+  const activities = ref(generateActivities())
 
-const activitySelectOptions = computed(() => generateActivitySelectOptions(activities.value))
+  const activitySelectOptions = computed(() => generateActivitySelectOptions(activities.value))
 
-function createActivity(activity) {
-  activities.value.push(activity)
-}
-function deleteActivity(activity) {
-  activities.value.splice(activities.value.indexOf(activity), 1)
-}
+  function createActivity(activity) {
+    activities.value.push(activity)
+  }
+  function deleteActivity(activity) {
+    activities.value.splice(activities.value.indexOf(activity), 1)
+  }
 
-function goTo(page) {
-  currentPage.value = page
-}
-function setTimelineItemActivity({ timelineItem, activity }) {
-  timelineItem.activityId = activity.id
-  console.log(timelineItem.activityId);
-}
+  function goTo(page) {
+    currentPage.value = page
+  }
+  function setTimelineItemActivity({ timelineItem, activity }) {
+    timelineItem.activityId = activity.id
+    console.log(timelineItem.activityId);
+  }
 </script>
 
 <template>
-  <TheHeader class="mb-7" @navigate="goTo($event)" />
+  <TheHeader
+    class="mb-7"
+    @navigate="goTo($event)"
+  />
 
   <main class="flex flex-grow flex-col">
     <TheTimeline
@@ -61,7 +63,10 @@ function setTimelineItemActivity({ timelineItem, activity }) {
     <TheProgress v-show="currentPage === PAGE_PROGRESS" />
   </main>
 
-  <TheNav :current-page="currentPage" @navigate="goTo($event)" />
+  <TheNav
+    :current-page="currentPage"
+    @navigate="goTo($event)"
+  />
 </template>
 <style>
 ::-webkit-scrollbar {

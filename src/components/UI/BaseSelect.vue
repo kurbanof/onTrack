@@ -1,30 +1,30 @@
 <script setup>
-import {
-  validateSelectOptions,
-  isUndefinedOrNull,
-  // isTimelineItemValid,
-} from '@/validators'
-import { XMarkIcon } from '@heroicons/vue/24/outline'
-import BaseButton from './BaseButton.vue'
-import { computed } from 'vue'
+  import {
+    validateSelectOptions,
+    isUndefinedOrNull,
+    isNumberOrNull
+    // isTimelineItemValid,
+  } from '@/validators'
+  import { XMarkIcon } from '@heroicons/vue/24/outline'
+  import BaseButton from './BaseButton.vue'
+  import { computed } from 'vue'
 
-const props = defineProps({
-  placeholder: {
-    required: true,
-    type: String,
-  },
-  options: {
-    required: true,
-    type: Array,
-    validator: validateSelectOptions,
-  },
-  selected: {
-    required: true,
-  // need to define a validator
-  },
-})
-const emit = defineEmits(['select'])
-const isNotSelected = computed(() => isUndefinedOrNull(props.selected))
+  const props = defineProps({
+    placeholder: {
+      required: true,
+      type: String,
+    },
+    options: {
+      required: true,
+      type: Array,
+      validator: validateSelectOptions,
+    },
+    selected: [String, Number],
+  })
+  const emit = defineEmits({
+    select: isNumberOrNull
+  })
+  const isNotSelected = computed(() => isUndefinedOrNull(props.selected))
 
 </script>
 <template>
@@ -36,7 +36,11 @@ const isNotSelected = computed(() => isUndefinedOrNull(props.selected))
       class="rounden w-full truncate rounded bg-gray-100 px-2 py-1 text-2xl outline-none"
       @change="emit('select', $event.target.value)"
     >
-      <option :selected="isNotSelected" disabled value="">
+      <option
+        :selected="isNotSelected"
+        disabled
+        value=""
+      >
         {{ placeholder }}
       </option>
       <option
