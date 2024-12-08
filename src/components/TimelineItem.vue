@@ -31,7 +31,7 @@ const emit = defineEmits({
   selectActivity: isActivityValid
 })
 function selecteActivity(id) {
-  emit('selectActivity', findActivityById(activity))
+  emit('selectActivity', findActivityById(id))
 }
 function findActivityById(id) {
   return props.activities.find((activity) => activity.id === id) || NULLABLE_ACTIVITY
