@@ -36,6 +36,7 @@ export function generateTimelineItems() {
     timelineItems.push({
       hour,
       activityId: null,
+      activitySeconds: 0
     })
   }
   return timelineItems
