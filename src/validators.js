@@ -51,16 +51,20 @@ export function isUndefinedOrNull(value) {
 export function isUndefined(value) {
   return value === undefined
 }
+export function isSelectValueValid(value) {
+  return isNotEmptyString(value) || isNumber(value) || isNull(value)
+} 
+
 export function isNumberOrNull(value) {
   return isNumber(value) || isNull(value)
 }
 function isString(value) {
   return typeof value === 'string'
 }
-function isNumber(value) {
+export function isNumber(value) {
   return typeof value === 'number'
 }
 
-function isNull(value) {
+export function isNull(value) {
   return value === null
 }
