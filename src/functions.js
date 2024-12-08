@@ -1,4 +1,5 @@
 import {
+  MILLISECONDS_IN_SECONDS,
   SECONDS_IN_HOUR,
   PAGE_TIMELINE,
   HOURS_IN_DAY,
@@ -8,6 +9,12 @@ import {
 } from './constants'
 import { isPageValid, isNull } from '@/validators'
 
+export function formatSeconds(seconds) {
+  const date = new Date()
+  date.setTime(Math.abs(seconds) * MILLISECONDS_IN_SECONDS)
+  const utc = date.toUTCString()
+  return utc.substring(utc.indexOf(':') - 2, utc.indexOf(':') + 6)
+}
 export function normalizePageHash() {
   const page = window.location.hash.slice(1)
   if (isPageValid(page)) {
@@ -36,7 +43,7 @@ export function generateTimelineItems() {
     timelineItems.push({
       hour,
       activityId: null,
-      activitySeconds: 0
+      activitySeconds: 0,
     })
   }
   return timelineItems
@@ -58,7 +65,9 @@ export function generatePeriodSelectOptions(periodsInMinutes) {
 }
 
 function generatePeriodSelectOptionsLabel(periodInMinutes) {
-  const hour = Math.floor(periodInMinutes / MINUTES_IN_HOUR).toString().padStart(2, 0)
+  const hour = Math.floor(periodInMinutes / MINUTES_IN_HOUR)
+    .toString()
+    .padStart(2, 0)
   const minutes = (periodInMinutes % MINUTES_IN_HOUR).toString().padStart(2, 0)
   return `${hour}:${minutes}`
 }

@@ -1,8 +1,9 @@
 <script setup>
-import { BUTTON_TYPE_PRIMARY, BUTTON_TYPE_SUCCESS, BUTTON_TYPE_WARNING, MILLISECONDS_IN_SECONDS } from '@/constants';
+import { BUTTON_TYPE_PRIMARY, BUTTON_TYPE_SUCCESS, BUTTON_TYPE_WARNING } from '@/constants';
 import BaseButton from '@/components/UI/BaseButton.vue';
 import { ArrowPathIcon, PlayIcon, PauseIcon } from '@heroicons/vue/24/outline';
 import { isNumber } from '@/validators';
+import { formatSeconds } from '@/functions';
 
 defineProps({
   seconds: {
@@ -12,12 +13,7 @@ defineProps({
   }
 })
 
-function formatSeconds(seconds) {
-  const date = new Date()
-  date.setTime(Math.abs(seconds) * MILLISECONDS_IN_SECONDS)
-  const utc = date.toUTCString()
-  return utc.substring(utc.indexOf(':') - 2, utc.indexOf(':') + 6)
-}
+
 </script>
 <template>
   <div class="flex w-full gap-2 ">
