@@ -40,12 +40,11 @@ function deleteActivity(activity) {
 function goTo(page) {
   currentPage.value = page
 }
-function setTimelineItemActivity({ timelineItem, activity }) {
-  timelineItem.activityId = activity?.id || null
+function setTimelineItemActivity(timelineItem, activity ) {
+  timelineItem.activityId = activity.id 
 }
 
 function setActivitySecondsToComplete(activity, secondsToComplete) {
-  // console.log(activity.name + ' ' + activity.secondsToComplete)
   activity.secondsToComplete = secondsToComplete
 }
 </script>

@@ -33,6 +33,9 @@ export function validateActivities(activities) {
   return activities.every(isActivityValid)
 }
 export function isActivityValid({ id, name, secondsToComplete }) {
+  if (isNull(id)) {
+    return true
+  }
   return [isNotEmptyString(id), isNotEmptyString(name), isNumber(secondsToComplete)].every(Boolean)
 }
 
@@ -53,7 +56,7 @@ export function isUndefined(value) {
 }
 export function isSelectValueValid(value) {
   return isNotEmptyString(value) || isNumber(value) || isNull(value)
-} 
+}
 
 export function isNumberOrNull(value) {
   return isNumber(value) || isNull(value)

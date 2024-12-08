@@ -24,4 +24,4 @@ export const PERIOD_SELECT_OPTIONS = [
   { value: 2 * SECONDS_IN_HOUR, label: '02:00' },
   { value: 3 * SECONDS_IN_HOUR, label: '03:00' },
 ]
-
+export const NULLABLE_ACTIVITY = { id: null }
