@@ -1,4 +1,5 @@
 <script setup>
+import { computed } from 'vue';
 import TimelineItem from '../components/TimelineItem.vue'
 import {
   validateTimelineItems,
@@ -30,6 +31,10 @@ const emit = defineEmits({
     return [isTimelineItemValid(timelineItem), isActivityValid(activity)].every(Boolean)
   },
 })
+// const isTimelineItemCurrent = timelineItem.hour === new Date().getHours()
+function isTimelineItemCurrent(hour) {
+  return hour === new Date().getHours()
+}
 </script>
 <template>
   <div>
@@ -41,6 +46,7 @@ const emit = defineEmits({
         :activities="activities"
         :activity-select-options="activitySelectOptions"
         @select-activity="emit('setTimelineItemActivity', timelineItem, $event)"
+        :class="{ 'bg-green-50/50': isTimelineItemCurrent(timelineItem.hour) }"
       />
     </ul>
   </div>

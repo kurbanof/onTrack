@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { BUTTON_TYPE_PRIMARY, BUTTON_TYPE_SUCCESS, BUTTON_TYPE_WARNING, MILLISECONDS_IN_SECONDS } from '@/constants';
 import BaseButton from '@/components/UI/BaseButton.vue';
 import { ArrowPathIcon, PlayIcon, PauseIcon } from '@heroicons/vue/24/outline';
-import { isNumber } from '@/validators';
+import { isHourValid, isNumber } from '@/validators';
 import { formatSeconds } from '@/functions';
 
 const props = defineProps({
@@ -11,6 +11,11 @@ const props = defineProps({
     default: 0,
     type: Number,
     validator: isNumber
+  },
+  hour: {
+    requared: true,
+    type: Number,
+    validator: isHourValid
   }
 })
 const seconds = ref(props.seconds)
@@ -29,11 +34,15 @@ function reset() {
   stop()
   seconds.value = 0
 }
+
+const isStartButtonDisabled = props.hour !== new Date().getHours()
 </script>
+
 <template>
   <div class="flex w-full gap-2 ">
     <BaseButton
       :type="BUTTON_TYPE_PRIMARY"
+      :disabled="!seconds"
       @click="reset"
     >
       <ArrowPathIcon class="h-8" />
@@ -50,6 +59,7 @@ function reset() {
 
     <BaseButton v-else
       :type="BUTTON_TYPE_SUCCESS"
+      :disabled="isStartButtonDisabled"
       @click="start"
     >
       <PlayIcon class="h-8" />

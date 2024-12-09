@@ -40,7 +40,7 @@ function findActivityById(id) {
 </script>
 
 <template>
-  <li class="relative flex flex-col gap-2 border-t-4 border-gray-100 px-5 py-10">
+  <li class="relative flex flex-col gap-2 border-t-4 border-gray-100 px-5 py-10"  >
     <TimelineHour :hour="timelineItem.hour" />
     <BaseSelect
       placeholder="Rest"
@@ -48,6 +48,6 @@ function findActivityById(id) {
       :selected="timelineItem.activityId"
       @select="selecteActivity"
     />
-    <TimelineStopWatch :seconds="timelineItem.activitySeconds"/>
+    <TimelineStopWatch :seconds="timelineItem.activitySeconds" :hour="timelineItem.hour"/>
   </li>
 </template>
