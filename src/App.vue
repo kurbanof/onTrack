@@ -19,9 +19,10 @@ import TheProgress from './pages/TheProgress.vue'
 // function normalizePageHash() срабатывает один раз при загрузке или перезагрузке страницы
 const currentPage = ref(normalizePageHash())
 
-const timelineItems = ref(generateTimelineItems())
 
 const activities = ref(generateActivities())
+
+const timelineItems = ref(generateTimelineItems(activities.value))
 
 const activitySelectOptions = computed(() => generateActivitySelectOptions(activities.value))
 
@@ -32,6 +33,7 @@ function deleteActivity(activity) {
   timelineItems.value.forEach((timelineItem) => {
     if (timelineItem.activityId === activity.id) {
       timelineItem.activityId = null
+      timelineItem.activitySeconds = 0
     }
   })
   activities.value.splice(activities.value.indexOf(activity), 1)
@@ -40,8 +42,8 @@ function deleteActivity(activity) {
 function goTo(page) {
   currentPage.value = page
 }
-function setTimelineItemActivity(timelineItem, activity ) {
-  timelineItem.activityId = activity.id 
+function setTimelineItemActivity(timelineItem, activity) {
+  timelineItem.activityId = activity.id
 }
 
 function setActivitySecondsToComplete(activity, secondsToComplete) {
@@ -50,7 +52,10 @@ function setActivitySecondsToComplete(activity, secondsToComplete) {
 </script>
 
 <template>
-  <TheHeader class="mb-7" @navigate="goTo($event)" />
+  <TheHeader
+    class="mb-7"
+    @navigate="goTo($event)"
+  />
 
   <main class="flex flex-grow flex-col">
     <TheTimeline
@@ -70,7 +75,10 @@ function setActivitySecondsToComplete(activity, secondsToComplete) {
     <TheProgress v-show="currentPage === PAGE_PROGRESS" />
   </main>
 
-  <TheNav :current-page="currentPage" @navigate="goTo($event)" />
+  <TheNav
+    :current-page="currentPage"
+    @navigate="goTo($event)"
+  />
 </template>
 <style>
 ::-webkit-scrollbar {
