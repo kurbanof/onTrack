@@ -44,17 +44,17 @@ const timelineItemRefs = ref([])
 watchPostEffect(async () => {
   if (props.currentPage === PAGE_TIMELINE) {
     await nextTick()
-    const currentHour = new Date().getHours()
-    scrollToHour(currentHour)
+    scrollToHour(null, false)
   }
-
 })
-
-function scrollToHour(hour) {
+defineExpose({ scrollToHour })
+function scrollToHour(hour = null, isSmooth = true) {
+  hour ??= new Date().getHours()
+  const options = { behavior: isSmooth ? 'smooth' : 'instant' }
   if (hour === MIDNIGT_HOUR) {
-    document.body.scrollIntoView()
+    document.body.scrollIntoView(options)
   } else {
-    timelineItemRefs.value[hour - 1].$el.scrollIntoView()
+    timelineItemRefs.value[hour - 1].$el.scrollIntoView(options)
   }
 }
 </script>

@@ -38,8 +38,14 @@ function deleteActivity(activity) {
   })
   activities.value.splice(activities.value.indexOf(activity), 1)
 }
-
+const timeline = ref()
 function goTo(page) {
+  if (currentPage.value === PAGE_TIMELINE && page === PAGE_TIMELINE) {
+    timeline.value.scrollToHour()
+  }
+  if (page !== PAGE_TIMELINE && currentPage.value !== page){
+    document.body.scrollIntoView()
+  }
   currentPage.value = page
 }
 function setTimelineItemActivity(timelineItem, activity) {
@@ -64,6 +70,7 @@ function setActivitySecondsToComplete(activity, secondsToComplete) {
       :activities="activities"
       :activity-select-options="activitySelectOptions"
       :currentPage="currentPage"
+      ref="timeline"
       @set-timeline-item-activity="setTimelineItemActivity"
     />
     <TheActivities
