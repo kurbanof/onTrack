@@ -48,7 +48,7 @@ const isStartButtonDisabled = props.hour !== new Date().getHours()
       <ArrowPathIcon class="h-8" />
     </BaseButton>
 
-    <div class="flex flex-grow items-center  rounded px-2 text-3xl outline-none bg-purple-200/50 ">
+    <div class="flex flex-grow items-center  rounded px-2 text-3xl outline-none bg-gray-100 ">
       {{ formatSeconds(seconds) }}
     </div>
     <BaseButton v-if="isRunning"

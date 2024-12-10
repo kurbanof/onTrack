@@ -26,10 +26,12 @@ const emit = defineEmits({
         :class="{
           'bg-slate-100 transition duration-200': currentPage === page,
           'border-x': page === PAGE_ACTIVITIES,
-
         }"
       >
-        <component :is="icon" class="h-6 w-6" />
+        <component
+          :is="icon"
+          class="h-6 w-6"
+        />
         {{ page }}
       </NavItem>
     </ul>

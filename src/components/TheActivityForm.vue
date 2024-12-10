@@ -21,7 +21,7 @@ async function submit() {
   })
   name.value = ''
   await nextTick()
-  window.scrollTo(0, document.body.scrollHeight)
+  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
 }
 
 </script>

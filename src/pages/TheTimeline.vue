@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue';
+import { ref, onMounted } from 'vue';
 import TimelineItem from '../components/TimelineItem.vue'
 import {
   validateTimelineItems,
@@ -8,6 +8,7 @@ import {
   isTimelineItemValid,
   isActivityValid,
 } from '@/validators'
+import { MIDNIGT_HOUR } from '@/constants';
 
 defineProps({
   activities: {
@@ -31,10 +32,20 @@ const emit = defineEmits({
     return [isTimelineItemValid(timelineItem), isActivityValid(activity)].every(Boolean)
   },
 })
-// const isTimelineItemCurrent = timelineItem.hour === new Date().getHours()
-function isTimelineItemCurrent(hour) {
-  return hour === new Date().getHours()
+
+const timelineItemRefs = ref([])
+
+onMounted(scrollToCurrentTimelineItem)
+
+function scrollToCurrentTimelineItem() {
+  const currentHour = new Date().getHours()
+  if (currentHour === MIDNIGT_HOUR) {
+    // document.body.scrollIntoView()
+  } else {
+    timelineItemRefs.value[currentHour - 1].$el.scrollIntoView()
+  }
 }
+
 </script>
 <template>
   <div>
@@ -45,8 +56,8 @@ function isTimelineItemCurrent(hour) {
         :timeline-item="timelineItem"
         :activities="activities"
         :activity-select-options="activitySelectOptions"
+        ref="timelineItemRefs"
         @select-activity="emit('setTimelineItemActivity', timelineItem, $event)"
-        :class="{ 'bg-green-50/50': isTimelineItemCurrent(timelineItem.hour) }"
       />
     </ul>
   </div>
