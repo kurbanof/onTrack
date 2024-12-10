@@ -9,6 +9,7 @@ import {
   isActivityValid,
   validateSelectOptions,
   validateActivities,
+  isHourValid,
 } from '@/validators'
 
 const props = defineProps({
@@ -30,7 +31,8 @@ const props = defineProps({
 })
 
 const emit = defineEmits({
-  selectActivity: isActivityValid
+  selectActivity: isActivityValid,
+  scrollToHour: isHourValid
 })
 function selecteActivity(id) {
   emit('selectActivity', findActivityById(id))
@@ -46,7 +48,7 @@ const isCurrentHour = ref(props.timelineItem.hour === new Date().getHours())
     class="relative flex flex-col gap-2 border-t-4 border-gray-100 px-5 py-10"
     :class="{ 'border-green-400/50': isCurrentHour }"
   >
-    <TimelineHour :hour="timelineItem.hour" />
+    <TimelineHour :hour="timelineItem.hour" @click.prevent="emit('scrollToHour', timelineItem.hour)"/>
     <BaseSelect
       placeholder="Rest"
       :options="activitySelectOptions"
