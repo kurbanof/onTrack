@@ -26,9 +26,7 @@ const isNotSelected = computed(() => isUndefinedOrNull(props.selected))
 function select(value) {
   emit('select', normalizeSelectValue(value))
 }
-// function selectOption(value) {
-//   return value === props.selected
-// }
+
 </script>
 <template>
   <div class="flex gap-2">
