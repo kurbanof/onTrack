@@ -48,16 +48,19 @@ const isStartButtonDisabled = props.hour !== new Date().getHours()
       <ArrowPathIcon class="h-8" />
     </BaseButton>
 
-    <div class="flex flex-grow items-center  rounded px-2 text-3xl outline-none bg-gray-100 ">
+    <div class="flex grow items-center  rounded px-2 text-3xl outline-none bg-gray-100 ">
       {{ formatSeconds(seconds) }}
     </div>
-    <BaseButton v-if="isRunning"
+    <BaseButton
+      v-if="isRunning"
       :type="BUTTON_TYPE_WARNING"
-      @click="stop">
+      @click="stop"
+    >
       <PauseIcon class="h-8" />
     </BaseButton>
 
-    <BaseButton v-else
+    <BaseButton
+      v-else
       :type="BUTTON_TYPE_SUCCESS"
       :disabled="isStartButtonDisabled"
       @click="start"

@@ -43,7 +43,7 @@ function goTo(page) {
   if (currentPage.value === PAGE_TIMELINE && page === PAGE_TIMELINE) {
     timeline.value.scrollToHour()
   }
-  if (page !== PAGE_TIMELINE && currentPage.value !== page){
+  if (page !== PAGE_TIMELINE && currentPage.value !== page) {
     document.body.scrollIntoView()
   }
   currentPage.value = page
@@ -63,7 +63,7 @@ function setActivitySecondsToComplete(activity, secondsToComplete) {
     @navigate="goTo($event)"
   />
 
-  <main class="flex flex-grow flex-col">
+  <main class="flex grow flex-col">
     <TheTimeline
       v-show="currentPage === PAGE_TIMELINE"
       :timeline-items="timelineItems"
