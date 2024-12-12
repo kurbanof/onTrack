@@ -8,7 +8,6 @@ import {
   isTimelineItemValid,
   isActivityValid,
   isPageValid,
-  isNumber,
 } from '@/validators'
 import { MIDNIGT_HOUR, PAGE_TIMELINE } from '@/constants';
 
@@ -38,9 +37,6 @@ const emit = defineEmits({
   setTimelineItemActivity(timelineItem, activity) {
     return [isTimelineItemValid(timelineItem), isActivityValid(activity)].every(Boolean)
   },
-  updateTimelineItemActivitySeconds(timelineItem, seconds) {
-    return [isTimelineItemValid(timelineItem), isNumber(seconds)].every(Boolean)
-  }
 })
 
 defineExpose({ scrollToHour })
@@ -76,7 +72,6 @@ function scrollToHour(hour = null, isSmooth = true) {
         ref="timelineItemRefs"
         @scroll-to-hour="scrollToHour"
         @select-activity="emit('setTimelineItemActivity', timelineItem, $event)"
-        @update-activity-seconds="emit('updateTimelineItemActivitySeconds', timelineItem, $event)"
       />
     </ul>
   </div>
