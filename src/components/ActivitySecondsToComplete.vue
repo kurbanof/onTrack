@@ -13,7 +13,7 @@ const timelineItems = inject('timelineItems')
 
 const seconds = computed(() => `${sign.value}${formatSeconds(secondsDiff.value)}`)
 const sign = computed(() => secondsDiff.value >= 0 ? '+' : '-')
-const secondsDiff = computed(() => getTotalActivitySeconds(props.activity, timelineItems) - props.activity.secondsToComplete
+const secondsDiff = computed(() => getTotalActivitySeconds(props.activity, timelineItems.value) - props.activity.secondsToComplete
 )
 
 const colorClasses = computed(() => secondsDiff.value < 0 ? redColor : greenColor)

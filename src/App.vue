@@ -48,8 +48,8 @@ function goTo(page) {
   }
   currentPage.value = page
 }
-function setTimelineItemActivity(timelineItem, activity) {
-  timelineItem.activityId = activity.id
+function setTimelineItemActivity(timelineItem, activityId) {
+  timelineItem.activityId = activityId
 }
 
 function setActivitySecondsToComplete(activity, secondsToComplete) {
@@ -60,10 +60,10 @@ function updateTimelineItemActivitySeconds(timelineItem, seconds) {
 }
 
 
-provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
-provide('activitySelectOptions', activitySelectOptions.value)
-provide('timelineItems', timelineItems.value)
-provide('activities', activities.value)
+provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds) // inject in TimelineStopWatch
+provide('setTimelineItemActivity', setTimelineItemActivity) // inject in TimelineItem
+provide('activitySelectOptions', activitySelectOptions) // activitySelectOptions in TimelineItem
+provide('timelineItems', timelineItems) // inject in ActivitySecondsToComplete
 
 </script>
 
@@ -79,7 +79,6 @@ provide('activities', activities.value)
       :timeline-items="timelineItems"
       :currentPage="currentPage"
       ref="timeline"
-      @set-timeline-item-activity="setTimelineItemActivity"
     />
     <TheActivities
       v-show="currentPage === PAGE_ACTIVITIES"
