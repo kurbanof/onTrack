@@ -16,8 +16,6 @@ import TheTimeline from './pages/TheTimeline.vue'
 import TheActivities from './pages/TheActivities.vue'
 import TheProgress from './pages/TheProgress.vue'
 
-provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
-
 // function normalizePageHash() срабатывает один раз при загрузке или перезагрузке страницы
 const currentPage = ref(normalizePageHash())
 
@@ -61,6 +59,10 @@ function updateTimelineItemActivitySeconds(timelineItem, seconds) {
   timelineItem.activitySeconds += seconds
 }
 
+
+provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
+provide('timelineItems', timelineItems.value)
+
 </script>
 
 <template>
@@ -82,7 +84,6 @@ function updateTimelineItemActivitySeconds(timelineItem, seconds) {
     <TheActivities
       v-show="currentPage === PAGE_ACTIVITIES"
       :activities="activities"
-      :timeline-items="timelineItems"
       @create-activity="createActivity"
       @delete-activity="deleteActivity"
       @set-activity-seconds-to-complete="setActivitySecondsToComplete"

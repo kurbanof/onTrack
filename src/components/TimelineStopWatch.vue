@@ -3,7 +3,7 @@ import { inject, ref } from 'vue'
 import { BUTTON_TYPE_PRIMARY, BUTTON_TYPE_SUCCESS, BUTTON_TYPE_WARNING, MILLISECONDS_IN_SECONDS } from '@/constants';
 import BaseButton from '@/components/UI/BaseButton.vue';
 import { ArrowPathIcon, PlayIcon, PauseIcon } from '@heroicons/vue/24/outline';
-import {  isTimelineItemValid } from '@/validators';
+import { isTimelineItemValid } from '@/validators';
 import { formatSeconds } from '@/functions';
 
 const props = defineProps({
