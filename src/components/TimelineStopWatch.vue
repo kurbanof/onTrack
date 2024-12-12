@@ -10,7 +10,7 @@ const props = defineProps({
   timelineItem: {
     require: true,
     type: Object,
-    validate: isTimelineItemValid
+    validator: isTimelineItemValid
   }
 })
 const updateTimelineItemActivitySeconds = inject('updateTimelineItemActivitySeconds')

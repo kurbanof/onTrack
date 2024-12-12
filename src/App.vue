@@ -38,7 +38,7 @@ function deleteActivity(activity) {
   })
   activities.value.splice(activities.value.indexOf(activity), 1)
 }
-const timeline = ref()
+const timeline = ref() // это ссылка соединяющая timeline с компонентом TheTimeline, который в свою очередь поедоставляет доступ к функции scrollToHour() посредством макроса defineExpose
 function goTo(page) {
   if (currentPage.value === PAGE_TIMELINE && page === PAGE_TIMELINE) {
     timeline.value.scrollToHour()
@@ -61,7 +61,9 @@ function updateTimelineItemActivitySeconds(timelineItem, seconds) {
 
 
 provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds)
+provide('activitySelectOptions', activitySelectOptions.value)
 provide('timelineItems', timelineItems.value)
+provide('activities', activities.value)
 
 </script>
 
@@ -75,8 +77,6 @@ provide('timelineItems', timelineItems.value)
     <TheTimeline
       v-show="currentPage === PAGE_TIMELINE"
       :timeline-items="timelineItems"
-      :activities="activities"
-      :activity-select-options="activitySelectOptions"
       :currentPage="currentPage"
       ref="timeline"
       @set-timeline-item-activity="setTimelineItemActivity"
