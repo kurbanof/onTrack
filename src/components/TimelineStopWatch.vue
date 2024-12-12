@@ -7,7 +7,7 @@ import { isHourValid, isNumber } from '@/validators';
 import { formatSeconds } from '@/functions';
 
 const props = defineProps({
-  seconds: {
+  timelineItemActivitySeconds: {
     default: 0,
     type: Number,
     validator: isNumber
@@ -18,11 +18,15 @@ const props = defineProps({
     validator: isHourValid
   }
 })
-const seconds = ref(props.seconds)
+const emit = defineEmits({
+  updateSeconds: isNumber
+})
+const seconds = ref(props.timelineItemActivitySeconds)
 const isRunning = ref(false)
 
 function start() {
   isRunning.value = setInterval(() => {
+    emit('updateSeconds', 1)
     seconds.value++
   }, MILLISECONDS_IN_SECONDS);
 }
@@ -32,6 +36,7 @@ function stop() {
 }
 function reset() {
   stop()
+  emit('updateSeconds', -seconds.value)
   seconds.value = 0
 }
 

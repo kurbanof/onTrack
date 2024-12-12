@@ -29,7 +29,7 @@ export function normalizeSelectValue(value) {
 }
 
 export function generateActivities() {
-  return ['Coding', 'Reading', 'Training'].map((name, hours) => ({
+  return ['Coding', 'Reading', 'Training', 'Working', 'Running',"Riding"].map((name, hours) => ({
     id: id(),
     name,
     secondsToComplete: hours * SECONDS_IN_HOUR,
