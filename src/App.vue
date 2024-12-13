@@ -8,6 +8,7 @@ import {
   generateTimelineItems,
   generateActivitySelectOptions,
   generateActivities,
+  generatePeriodSelectOptions
 } from './functions'
 
 import TheHeader from './components/TheHeader.vue'
@@ -18,7 +19,6 @@ import TheProgress from './pages/TheProgress.vue'
 
 // function normalizePageHash() срабатывает один раз при загрузке или перезагрузке страницы
 const currentPage = ref(normalizePageHash())
-
 
 const activities = ref(generateActivities())
 
@@ -63,7 +63,8 @@ function updateTimelineItemActivitySeconds(timelineItem, seconds) {
 provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds) // inject in TimelineStopWatch
 provide('setActivitySecondsToComplete', setActivitySecondsToComplete) // inject in ActivityItem
 provide('setTimelineItemActivity', setTimelineItemActivity) // inject in TimelineItem
-provide('activitySelectOptions', activitySelectOptions) // activitySelectOptions in TimelineItem
+provide('activitySelectOptions', activitySelectOptions) // inject in TimelineItem
+provide('periodSelectOptions', generatePeriodSelectOptions()) // inject in ActivityItem
 provide('timelineItems', timelineItems) // inject in ActivitySecondsToComplete
 
 </script>

@@ -4,7 +4,7 @@ import ActivitySecondsToComplete from '@/components/ActivitySecondsToComplete.vu
 import BaseButton from '@/components/UI/BaseButton.vue'
 import BaseSelect from '@/components/UI/BaseSelect.vue'
 import { isActivityValid, isUndefined } from '@/validators'
-import { BUTTON_TYPE_DANGER, PERIOD_SELECT_OPTIONS } from '@/constants'
+import { BUTTON_TYPE_DANGER } from '@/constants'
 import { inject } from 'vue'
 
 defineProps({
@@ -18,6 +18,7 @@ const emit = defineEmits({
   delete: isUndefined,
 })
 const setActivitySecondsToComplete = inject('setActivitySecondsToComplete')
+const periodSelectOptions = inject('periodSelectOptions')
 </script>
 <template>
   <li class="flex flex-col gap-2 p-5">
@@ -34,7 +35,7 @@ const setActivitySecondsToComplete = inject('setActivitySecondsToComplete')
     <div class="flex gap-2">
       <BaseSelect
         placeholder="hh:mm"
-        :options="PERIOD_SELECT_OPTIONS"
+        :options="periodSelectOptions"
         :selected="activity.secondsToComplete || null"
         @select="setActivitySecondsToComplete(activity, $event || 0)"
         class="grow"
