@@ -3,7 +3,7 @@ import { TrashIcon } from '@heroicons/vue/24/outline'
 import ActivitySecondsToComplete from '@/components/ActivitySecondsToComplete.vue'
 import BaseButton from '@/components/UI/BaseButton.vue'
 import BaseSelect from '@/components/UI/BaseSelect.vue'
-import { isActivityValid, isUndefined } from '@/validators'
+import { isActivityValid } from '@/validators'
 import { BUTTON_TYPE_DANGER } from '@/constants'
 import { inject } from 'vue'
 
@@ -14,11 +14,10 @@ defineProps({
     validator: isActivityValid,
   },
 })
-const emit = defineEmits({
-  delete: isUndefined,
-})
-const setActivitySecondsToComplete = inject('setActivitySecondsToComplete')
+
+const deleteActivity = inject('deleteActivity')
 const periodSelectOptions = inject('periodSelectOptions')
+const setActivitySecondsToComplete = inject('setActivitySecondsToComplete')
 </script>
 <template>
   <li class="flex flex-col gap-2 p-5">
@@ -26,7 +25,7 @@ const periodSelectOptions = inject('periodSelectOptions')
       <BaseButton
         :type="BUTTON_TYPE_DANGER"
         class="rounded-none"
-        @click="emit('delete')"
+        @click="deleteActivity(activity)"
       >
         <TrashIcon class="h-8" />
       </BaseButton>
