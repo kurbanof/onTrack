@@ -61,6 +61,7 @@ function updateTimelineItemActivitySeconds(timelineItem, seconds) {
 
 
 provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds) // inject in TimelineStopWatch
+provide('setActivitySecondsToComplete', setActivitySecondsToComplete) // inject in ActivityItem
 provide('setTimelineItemActivity', setTimelineItemActivity) // inject in TimelineItem
 provide('activitySelectOptions', activitySelectOptions) // activitySelectOptions in TimelineItem
 provide('timelineItems', timelineItems) // inject in ActivitySecondsToComplete
@@ -85,7 +86,6 @@ provide('timelineItems', timelineItems) // inject in ActivitySecondsToComplete
       :activities="activities"
       @create-activity="createActivity"
       @delete-activity="deleteActivity"
-      @set-activity-seconds-to-complete="setActivitySecondsToComplete"
     />
     <TheProgress v-show="currentPage === PAGE_PROGRESS" />
   </main>
