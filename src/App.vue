@@ -60,12 +60,13 @@ function updateTimelineItemActivitySeconds(timelineItem, seconds) {
 }
 
 
-provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds) // inject in TimelineStopWatch
-provide('setActivitySecondsToComplete', setActivitySecondsToComplete) // inject in ActivityItem
-provide('setTimelineItemActivity', setTimelineItemActivity) // inject in TimelineItem
-provide('activitySelectOptions', activitySelectOptions) // inject in TimelineItem
-provide('periodSelectOptions', generatePeriodSelectOptions()) // inject in ActivityItem
-provide('timelineItems', timelineItems) // inject in ActivitySecondsToComplete
+provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds) // inject ininto TimelineStopWatch
+provide('createActivity', createActivity) // Inject into TheActivityForm
+provide('setActivitySecondsToComplete', setActivitySecondsToComplete) // inject ininto ActivityItem
+provide('periodSelectOptions', generatePeriodSelectOptions()) // inject ininto ActivityItem
+provide('setTimelineItemActivity', setTimelineItemActivity) // inject ininto TimelineItem
+provide('activitySelectOptions', activitySelectOptions) // inject ininto TimelineItem
+provide('timelineItems', timelineItems) // inject ininto ActivitySecondsToComplete
 
 </script>
 
@@ -85,7 +86,6 @@ provide('timelineItems', timelineItems) // inject in ActivitySecondsToComplete
     <TheActivities
       v-show="currentPage === PAGE_ACTIVITIES"
       :activities="activities"
-      @create-activity="createActivity"
       @delete-activity="deleteActivity"
     />
     <TheProgress v-show="currentPage === PAGE_PROGRESS" />
