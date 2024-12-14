@@ -3,7 +3,7 @@ import { computed, ref, provide } from 'vue'
 
 import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from './constants'
 
-import { currentPage, timelineRef, navigate } from '@/router'
+import { currentPage, timelineRef } from '@/router'
 
 import {
   generateTimelineItems,
@@ -64,16 +64,12 @@ provide('timelineItems', timelineItems) // inject ininto ActivitySecondsToComple
 </script>
 
 <template>
-  <TheHeader
-    class="mb-7"
-    @navigate="navigate($event)"
-  />
+  <TheHeader class="mb-7" />
 
   <main class="flex grow flex-col">
     <TheTimeline
       v-show="currentPage === PAGE_TIMELINE"
       :timeline-items="timelineItems"
-      :currentPage="currentPage"
       ref="timelineRef"
     />
     <TheActivities
@@ -83,10 +79,7 @@ provide('timelineItems', timelineItems) // inject ininto ActivitySecondsToComple
     <TheProgress v-show="currentPage === PAGE_PROGRESS" />
   </main>
 
-  <TheNav
-    :current-page="currentPage"
-    @navigate="navigate($event)"
-  />
+  <TheNav />
 </template>
 <style>
 ::-webkit-scrollbar {

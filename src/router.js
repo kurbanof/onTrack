@@ -9,8 +9,7 @@ export const timelineRef = ref() // это ссылка соединяющая t
 export function navigate(page) {
   if (currentPage.value === PAGE_TIMELINE && page === PAGE_TIMELINE) {
     timelineRef.value.scrollToHour()
-  }
-  if (page !== PAGE_TIMELINE && currentPage.value !== page) {
+  } else if (page !== PAGE_TIMELINE && currentPage.value !== page) {
     document.body.scrollIntoView()
   }
   currentPage.value = page
