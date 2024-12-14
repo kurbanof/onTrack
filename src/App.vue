@@ -3,8 +3,9 @@ import { computed, ref, provide } from 'vue'
 
 import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from './constants'
 
+import { currentPage, timelineRef, navigate } from '@/router'
+
 import {
-  normalizePageHash,
   generateTimelineItems,
   generateActivitySelectOptions,
   generateActivities,
@@ -18,7 +19,6 @@ import TheActivities from './pages/TheActivities.vue'
 import TheProgress from './pages/TheProgress.vue'
 
 // function normalizePageHash() срабатывает один раз при загрузке или перезагрузке страницы
-const currentPage = ref(normalizePageHash())
 
 const activities = ref(generateActivities())
 
@@ -38,16 +38,8 @@ function deleteActivity(activity) {
   })
   activities.value.splice(activities.value.indexOf(activity), 1)
 }
-const timeline = ref() // это ссылка соединяющая timeline с компонентом TheTimeline, который в свою очередь поедоставляет доступ к функции scrollToHour() посредством макроса defineExpose
-function goTo(page) {
-  if (currentPage.value === PAGE_TIMELINE && page === PAGE_TIMELINE) {
-    timeline.value.scrollToHour()
-  }
-  if (page !== PAGE_TIMELINE && currentPage.value !== page) {
-    document.body.scrollIntoView()
-  }
-  currentPage.value = page
-}
+
+
 function setTimelineItemActivity(timelineItem, activityId) {
   timelineItem.activityId = activityId
 }
@@ -74,7 +66,7 @@ provide('timelineItems', timelineItems) // inject ininto ActivitySecondsToComple
 <template>
   <TheHeader
     class="mb-7"
-    @navigate="goTo($event)"
+    @navigate="navigate($event)"
   />
 
   <main class="flex grow flex-col">
@@ -82,7 +74,7 @@ provide('timelineItems', timelineItems) // inject ininto ActivitySecondsToComple
       v-show="currentPage === PAGE_TIMELINE"
       :timeline-items="timelineItems"
       :currentPage="currentPage"
-      ref="timeline"
+      ref="timelineRef"
     />
     <TheActivities
       v-show="currentPage === PAGE_ACTIVITIES"
@@ -93,7 +85,7 @@ provide('timelineItems', timelineItems) // inject ininto ActivitySecondsToComple
 
   <TheNav
     :current-page="currentPage"
-    @navigate="goTo($event)"
+    @navigate="navigate($event)"
   />
 </template>
 <style>
