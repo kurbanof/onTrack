@@ -1,15 +1,15 @@
 <script setup>
 import { computed } from 'vue';
 import { currentPage, navigate } from '@/router';
-import { isPageValid } from '@/validators';
+import { isNavItemValid } from '@/validators';
 import { PAGE_ACTIVITIES } from '../constants'
 
 
 const props = defineProps({
-  page: {
+  navItem: {
     required: true,
-    type: String,
-    validator: isPageValid
+    type: Object,
+    validator: isNavItemValid
   }
 })
 const classes = computed(() => [
@@ -22,11 +22,14 @@ const classes = computed(() => [
 <template>
   <li class="transition hover:duration-200 flex-1 border-4 border-x-2 hover:bg-slate-100">
     <a
-      :href="`#${page}`"
+      :href="`#${navItem.page}`"
       :class="classes"
-      @click="navigate(page)"
+      @click="navigate(navItem.page)"
     >
-      <slot />
+      <component
+        :is="navItem.icon"
+        class="h-6 w-6"
+      /> {{ navItem.page }}
     </a>
   </li>
 </template>
