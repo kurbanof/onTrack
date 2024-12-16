@@ -47,7 +47,7 @@ function setTimelineItemActivity(timelineItem, activityId) {
 }
 
 function setActivitySecondsToComplete(activity, secondsToComplete) {
-  activity.secondsToComplete = secondsToComplete
+  activity.secondsToComplete = secondsToComplete || 0
 }
 function updateTimelineItemActivitySeconds(timelineItem, seconds) {
   timelineItem.activitySeconds += seconds

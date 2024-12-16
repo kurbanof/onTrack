@@ -3,7 +3,7 @@ import { inject, ref } from 'vue'
 import { ArrowPathIcon, PlayIcon, PauseIcon } from '@heroicons/vue/24/outline';
 import { BUTTON_TYPE_PRIMARY, BUTTON_TYPE_SUCCESS, BUTTON_TYPE_WARNING, MILLISECONDS_IN_SECONDS } from '@/constants';
 import { isTimelineItemValid } from '@/validators';
-import { formatSeconds } from '@/functions';
+import { currentHour, formatSeconds } from '@/functions';
 import { updateTimelineItemActivitySecondsKey } from '@/keys'
 import BaseButton from '@/components/UI/BaseButton.vue';
 
@@ -35,7 +35,7 @@ function reset() {
   seconds.value = 0
 }
 
-const isStartButtonDisabled = props.timelineItem.hour !== new Date().getHours()
+const isStartButtonDisabled = props.timelineItem.hour !== currentHour()
 </script>
 
 <template>
