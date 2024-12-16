@@ -1,6 +1,7 @@
 <script setup>
-import { ref, inject } from 'vue';
-import { setTimelineItemActivityKey, activitySelectOptionsKey } from '@/keys'
+import { ref } from 'vue';
+import { activitySelectOptions } from '@/activities'
+import { setTimelineItemActivity } from '@/timeline-items'
 import { currentHour } from '@/functions';
 import { isTimelineItemValid, isUndefined } from '@/validators'
 import TimelineHour from '@/components/TimelineHour.vue'
@@ -18,8 +19,6 @@ const props = defineProps({
 const emit = defineEmits({
   scrollToHour: isUndefined,
 })
-const setTimelineItemActivity = inject(setTimelineItemActivityKey)
-const activitySelectOptions = inject(activitySelectOptionsKey)
 
 const isCurrentHour = ref(props.timelineItem.hour === currentHour())
 </script>

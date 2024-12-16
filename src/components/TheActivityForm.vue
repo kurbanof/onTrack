@@ -1,6 +1,6 @@
 <script setup>
-import { inject, nextTick, ref } from 'vue'
-import { createActivityKey } from '@/keys'
+import { nextTick, ref } from 'vue'
+import { createActivity } from '@/activities'
 import { BUTTON_TYPE_PRIMARY } from '@/constants'
 import { id } from '@/functions'
 import { PlusIcon } from '@heroicons/vue/24/outline'
@@ -20,7 +20,6 @@ async function submit() {
   await nextTick()
   window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
 }
-const createActivity = inject(createActivityKey)
 
 </script>
 <template>
