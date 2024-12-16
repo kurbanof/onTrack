@@ -1,6 +1,4 @@
 <script setup>
-import { PAGE_PROGRESS, PAGE_TIMELINE } from '@/constants';
-import { navigate } from '@/router';
 import TheLogo from './TheLogo.vue'
 import TheHeaderProgress from './TheHeaderProgress.vue';
 
@@ -9,7 +7,7 @@ import TheHeaderProgress from './TheHeaderProgress.vue';
 
 <template>
   <header class="sticky top-0 z-20 flex items-center justify-between border-b-4 bg-slate-100 p-3">
-    <TheLogo @click="navigate(PAGE_TIMELINE)" />
-    <TheHeaderProgress @click="navigate(PAGE_PROGRESS)" />
+    <TheLogo />
+    <TheHeaderProgress />
   </header>
 </template>
