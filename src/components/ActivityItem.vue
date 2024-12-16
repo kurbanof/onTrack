@@ -1,11 +1,14 @@
 <script setup>
-import { TrashIcon } from '@heroicons/vue/24/outline'
-import ActivitySecondsToComplete from '@/components/ActivitySecondsToComplete.vue'
-import BaseButton from '@/components/UI/BaseButton.vue'
-import BaseSelect from '@/components/UI/BaseSelect.vue'
-import { isActivityValid } from '@/validators'
-import { BUTTON_TYPE_DANGER } from '@/constants'
 import { inject } from 'vue'
+import { BUTTON_TYPE_DANGER } from '@/constants'
+import { setActivitySecondsToCompleteKey, periodSelectOptionsKey, deleteActivityKey } from '@/keys'
+import { isActivityValid } from '@/validators'
+
+import { TrashIcon } from '@heroicons/vue/24/outline'
+
+import ActivitySecondsToComplete from '@/components/ActivitySecondsToComplete.vue'
+import BaseSelect from '@/components/UI/BaseSelect.vue'
+import BaseButton from '@/components/UI/BaseButton.vue'
 
 defineProps({
   activity: {
@@ -15,9 +18,9 @@ defineProps({
   },
 })
 
-const deleteActivity = inject('deleteActivity')
-const periodSelectOptions = inject('periodSelectOptions')
-const setActivitySecondsToComplete = inject('setActivitySecondsToComplete')
+const deleteActivity = inject(deleteActivityKey)
+const periodSelectOptions = inject(periodSelectOptionsKey)
+const setActivitySecondsToComplete = inject(setActivitySecondsToCompleteKey)
 </script>
 <template>
   <li class="flex flex-col gap-2 p-5">

@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref, provide } from 'vue'
+import { computed, ref, provide, readonly } from 'vue'
 
 import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from './constants'
 
@@ -11,6 +11,8 @@ import {
   generateActivities,
   generatePeriodSelectOptions
 } from './functions'
+
+import * as keys from '@/keys'
 
 import TheHeader from './components/TheHeader.vue'
 import TheNav from './components/TheNav.vue'
@@ -52,14 +54,14 @@ function updateTimelineItemActivitySeconds(timelineItem, seconds) {
 }
 
 
-provide('updateTimelineItemActivitySeconds', updateTimelineItemActivitySeconds) // inject ininto TimelineStopWatch
-provide('createActivity', createActivity) // Inject into TheActivityForm
-provide('deleteActivity', deleteActivity) // Inject into ActivityItem
-provide('setActivitySecondsToComplete', setActivitySecondsToComplete) // inject ininto ActivityItem
-provide('periodSelectOptions', generatePeriodSelectOptions()) // inject ininto ActivityItem
-provide('setTimelineItemActivity', setTimelineItemActivity) // inject ininto TimelineItem
-provide('activitySelectOptions', activitySelectOptions) // inject ininto TimelineItem
-provide('timelineItems', timelineItems) // inject ininto ActivitySecondsToComplete
+provide(keys.updateTimelineItemActivitySecondsKey, updateTimelineItemActivitySeconds) // inject ininto TimelineStopWatch
+provide(keys.createActivityKey, createActivity) // Inject into TheActivityForm
+provide(keys.deleteActivityKey, deleteActivity) // Inject into ActivityItem
+provide(keys.setActivitySecondsToCompleteKey, setActivitySecondsToComplete) // inject ininto ActivityItem
+provide(keys.periodSelectOptionsKey, readonly(generatePeriodSelectOptions())) // inject ininto ActivityItem
+provide(keys.setTimelineItemActivityKey, setTimelineItemActivity) // inject ininto TimelineItem
+provide(keys.activitySelectOptionsKey, readonly(activitySelectOptions)) // inject ininto TimelineItem
+provide(keys.timelineItemsKey, readonly(timelineItems)) // inject ininto ActivitySecondsToComplete
 
 </script>
 

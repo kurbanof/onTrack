@@ -4,7 +4,6 @@ import { currentPage, navigate } from '@/router';
 import { isNavItemValid } from '@/validators';
 import { PAGE_ACTIVITIES } from '../constants'
 
-
 const props = defineProps({
   navItem: {
     required: true,
@@ -13,10 +12,11 @@ const props = defineProps({
   }
 })
 const classes = computed(() => [
-  { 'bg-slate-100 transition duration-200': currentPage.value === props.page },
-  { 'border-x': props.page === PAGE_ACTIVITIES },
+  { 'bg-slate-100 transition duration-200': currentPage.value === props.navItem.page },
+  { 'border-x': props.navItem.page === PAGE_ACTIVITIES },
   'duration-900 flex flex-col items-center  p-2 capitalize'
 ])
+
 </script>
 
 <template>

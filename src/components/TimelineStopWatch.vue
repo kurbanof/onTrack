@@ -1,10 +1,11 @@
 <script setup>
 import { inject, ref } from 'vue'
-import { BUTTON_TYPE_PRIMARY, BUTTON_TYPE_SUCCESS, BUTTON_TYPE_WARNING, MILLISECONDS_IN_SECONDS } from '@/constants';
-import BaseButton from '@/components/UI/BaseButton.vue';
 import { ArrowPathIcon, PlayIcon, PauseIcon } from '@heroicons/vue/24/outline';
+import { BUTTON_TYPE_PRIMARY, BUTTON_TYPE_SUCCESS, BUTTON_TYPE_WARNING, MILLISECONDS_IN_SECONDS } from '@/constants';
 import { isTimelineItemValid } from '@/validators';
 import { formatSeconds } from '@/functions';
+import { updateTimelineItemActivitySecondsKey } from '@/keys'
+import BaseButton from '@/components/UI/BaseButton.vue';
 
 const props = defineProps({
   timelineItem: {
@@ -13,7 +14,7 @@ const props = defineProps({
     validator: isTimelineItemValid
   }
 })
-const updateTimelineItemActivitySeconds = inject('updateTimelineItemActivitySeconds')
+const updateTimelineItemActivitySeconds = inject(updateTimelineItemActivitySecondsKey)
 
 const seconds = ref(props.timelineItem.activitySeconds)
 const isRunning = ref(false)

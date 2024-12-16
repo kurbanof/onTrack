@@ -1,12 +1,10 @@
 <script setup>
 import { ref, inject } from 'vue';
-import TimelineHour from './TimelineHour.vue'
-import BaseSelect from './UI/BaseSelect.vue'
+import { setTimelineItemActivityKey, activitySelectOptionsKey } from '@/keys'
+import {isTimelineItemValid, isHourValid } from '@/validators'
+import TimelineHour from '@/components/TimelineHour.vue'
 import TimelineStopWatch from '@/components/TimelineStopWatch.vue';
-import {
-  isTimelineItemValid,
-  isHourValid,
-} from '@/validators'
+import BaseSelect from './UI/BaseSelect.vue'
 
 const props = defineProps({
   timelineItem: {
@@ -19,8 +17,8 @@ const props = defineProps({
 const emit = defineEmits({
   scrollToHour: isHourValid,
 })
-const setTimelineItemActivity = inject('setTimelineItemActivity')
-const activitySelectOptions = inject('activitySelectOptions')
+const setTimelineItemActivity = inject(setTimelineItemActivityKey)
+const activitySelectOptions = inject(activitySelectOptionsKey)
 
 const isCurrentHour = ref(props.timelineItem.hour === new Date().getHours())
 </script>

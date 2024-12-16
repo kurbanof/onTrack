@@ -1,10 +1,10 @@
 <script setup>
 import { inject, nextTick, ref } from 'vue'
-import { PlusIcon } from '@heroicons/vue/24/outline'
-
-import BaseButton from '@/components/UI/BaseButton.vue'
+import { createActivityKey } from '@/keys'
 import { BUTTON_TYPE_PRIMARY } from '@/constants'
 import { id } from '@/functions'
+import { PlusIcon } from '@heroicons/vue/24/outline'
+import BaseButton from '@/components/UI/BaseButton.vue'
 
 
 
@@ -20,7 +20,7 @@ async function submit() {
   await nextTick()
   window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
 }
-const createActivity = inject('createActivity')
+const createActivity = inject(createActivityKey)
 
 </script>
 <template>
