@@ -22,7 +22,8 @@ import {
 import {
   timelineItems,
   setTimelineItemActivity,
-  updateTimelineItemActivitySeconds
+  updateTimelineItemActivitySeconds,
+  resetTimelineActivities
 } from '@/timeline-items'
 
 import TheHeader from './components/TheHeader.vue'
@@ -31,14 +32,17 @@ import TheTimeline from './pages/TheTimeline.vue'
 import TheActivities from './pages/TheActivities.vue'
 import TheProgress from './pages/TheProgress.vue'
 
-provide(keys.updateTimelineItemActivitySecondsKey, updateTimelineItemActivitySeconds) // inject ininto TimelineStopWatch
+provide(keys.updateTimelineItemActivitySecondsKey, updateTimelineItemActivitySeconds) // inject into TimelineStopWatch
 provide(keys.createActivityKey, createActivity) // Inject into TheActivityForm
-provide(keys.deleteActivityKey, deleteActivity) // Inject into ActivityItem
+provide(keys.deleteActivityKey, (activity) => {
+  resetTimelineActivities(activity)
+  deleteActivity(activity)
+}) // Inject into ActivityItem
 provide(keys.setActivitySecondsToCompleteKey, setActivitySecondsToComplete) // inject ininto ActivityItem
-provide(keys.periodSelectOptionsKey, readonly(generatePeriodSelectOptions())) // inject ininto ActivityItem
-provide(keys.setTimelineItemActivityKey, setTimelineItemActivity) // inject ininto TimelineItem
-provide(keys.activitySelectOptionsKey, readonly(activitySelectOptions)) // inject ininto TimelineItem
-provide(keys.timelineItemsKey, readonly(timelineItems)) // inject ininto ActivitySecondsToComplete
+provide(keys.periodSelectOptionsKey, readonly(generatePeriodSelectOptions())) // inject into ActivityItem
+provide(keys.setTimelineItemActivityKey, setTimelineItemActivity) // inject into TimelineItem
+provide(keys.activitySelectOptionsKey, readonly(activitySelectOptions)) // inject into TimelineItem
+provide(keys.timelineItemsKey, readonly(timelineItems)) // inject into ActivitySecondsToComplete
 
 </script>
 

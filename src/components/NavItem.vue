@@ -14,13 +14,13 @@ const props = defineProps({
 const classes = computed(() => [
   { 'bg-slate-100 transition duration-200': currentPage.value === props.navItem.page },
   { 'border-x': props.navItem.page === PAGE_ACTIVITIES },
-  'duration-900 flex flex-col items-center  p-2 capitalize'
+  'duration-900 flex flex-col items-center  p-2  capitalize'
 ])
-
+const hoverClasses = 'transition hover:duration-200 flex-1 border-4 border-x-2 hover:bg-slate-100'
 </script>
 
 <template>
-  <li class="transition hover:duration-200 flex-1 border-4 border-x-2 hover:bg-slate-100">
+  <li :class="hoverClasses">
     <a
       :href="`#${navItem.page}`"
       :class="classes"
