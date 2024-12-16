@@ -12,7 +12,6 @@ import {
 import * as keys from '@/keys'
 
 import {
-  activities,
   createActivity,
   deleteActivity,
   activitySelectOptions,
@@ -20,7 +19,6 @@ import {
 } from '@/activities'
 
 import {
-  timelineItems,
   setTimelineItemActivity,
   updateTimelineItemActivitySeconds,
   resetTimelineActivities
@@ -42,7 +40,6 @@ provide(keys.setActivitySecondsToCompleteKey, setActivitySecondsToComplete) // i
 provide(keys.periodSelectOptionsKey, readonly(generatePeriodSelectOptions())) // inject into ActivityItem
 provide(keys.setTimelineItemActivityKey, setTimelineItemActivity) // inject into TimelineItem
 provide(keys.activitySelectOptionsKey, readonly(activitySelectOptions)) // inject into TimelineItem
-provide(keys.timelineItemsKey, readonly(timelineItems)) // inject into ActivitySecondsToComplete
 
 </script>
 
@@ -52,12 +49,10 @@ provide(keys.timelineItemsKey, readonly(timelineItems)) // inject into ActivityS
   <main class="flex grow flex-col">
     <TheTimeline
       v-show="currentPage === PAGE_TIMELINE"
-      :timeline-items="timelineItems"
       ref="timelineRef"
     />
     <TheActivities
       v-show="currentPage === PAGE_ACTIVITIES"
-      :activities="activities"
     />
     <TheProgress v-show="currentPage === PAGE_PROGRESS" />
   </main>
