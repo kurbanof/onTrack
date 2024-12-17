@@ -4,20 +4,18 @@ import { activities } from '@/activities'
 
 export const timelineItems = ref(generateTimelineItems(activities.value))
 
-export function setTimelineItemActivity(timelineItem, activityId) {
-  timelineItem.activityId = activityId
+export function updateTimelineItem(timelineItem, field) {
+  Object.assign(timelineItem, field)
 }
 
-export function updateTimelineItemActivitySeconds(timelineItem, seconds) {
-  timelineItem.activitySeconds = seconds
-}
 export function resetTimelineActivities(activity) {
-  timelineItems.value.forEach((timelineItem) => {
-    if (timelineItem.activityId === activity.id) {
-      timelineItem.activityId = null
-      timelineItem.activitySeconds = 0
-    }
-  })
+  timelineItems.value
+    .filter((timelineItem) => timelineItem.activityId === activity.id)
+    .forEach((timelineItem) => updateTimelineItem(timelineItem, {
+      activityId: null,
+      activitySeconds: 0
+    })
+    )
 }
 
 export function getTotalActivitySeconds(activity) {

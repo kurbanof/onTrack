@@ -4,7 +4,7 @@ import { ArrowPathIcon, PlayIcon, PauseIcon } from '@heroicons/vue/24/outline';
 import { BUTTON_TYPE_PRIMARY, BUTTON_TYPE_SUCCESS, BUTTON_TYPE_WARNING, MILLISECONDS_IN_SECONDS } from '@/constants';
 import { isTimelineItemValid } from '@/validators';
 import { currentHour, formatSeconds } from '@/functions';
-import { updateTimelineItemActivitySeconds } from '@/timeline-items'
+import { updateTimelineItem } from '@/timeline-items'
 import BaseButton from '@/components/UI/BaseButton.vue';
 
 const props = defineProps({
@@ -20,7 +20,7 @@ const isRunning = ref(false)
 
 function start() {
   isRunning.value = setInterval(() => {
-    updateTimelineItemActivitySeconds(props.timelineItem, props.timelineItem.activitySeconds + 1)
+    updateTimelineItem(props.timelineItem, { activitySeconds: props.timelineItem.activitySeconds + 1 })
     seconds.value++
   }, MILLISECONDS_IN_SECONDS);
 }
@@ -30,14 +30,14 @@ function stop() {
 }
 function reset() {
   stop()
-  updateTimelineItemActivitySeconds(props.timelineItem, props.timelineItem.activitySeconds - seconds.value)
+  updateTimelineItem(props.timelineItem, { activitySeconds: props.timelineItem.activitySeconds - seconds.value })
   seconds.value = 0
 }
 
 watch(
   () => props.timelineItem.activityId,
   () => {
-    updateTimelineItemActivitySeconds(props.timelineItem, seconds.value)
+    updateTimelineItem(props.timelineItem, { activitySeconds: seconds.value })
     // if (props.timelineItem.activityId === null) reset()
     // если надо сделать сброс таймера после удаления акттивности
   })

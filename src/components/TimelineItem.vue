@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import { activitySelectOptions } from '@/activities'
-import { setTimelineItemActivity } from '@/timeline-items'
+import { updateTimelineItem } from '@/timeline-items'
 import { currentHour } from '@/functions';
 import { isTimelineItemValid, isUndefined } from '@/validators'
 import TimelineHour from '@/components/TimelineHour.vue'
@@ -36,7 +36,7 @@ const isCurrentHour = ref(props.timelineItem.hour === currentHour())
       placeholder="Rest"
       :options="activitySelectOptions"
       :selected="timelineItem.activityId"
-      @select="setTimelineItemActivity(timelineItem, $event)"
+      @select="updateTimelineItem(timelineItem, {activityId: $event})"
     />
     <TimelineStopWatch :timeline-item="timelineItem" />
   </li>
