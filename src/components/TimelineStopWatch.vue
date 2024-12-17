@@ -34,11 +34,13 @@ function reset() {
   seconds.value = 0
 }
 
-watch(() => props.timelineItem.activityId, () => {
-  // if (props.timelineItem.activityId === null) reset()
-  // если надо сделать сброс таймера после удаления акттивности
-  updateTimelineItemActivitySeconds(props.timelineItem, seconds.value)
-})
+watch(
+  () => props.timelineItem.activityId,
+  () => {
+    updateTimelineItemActivitySeconds(props.timelineItem, seconds.value)
+    // if (props.timelineItem.activityId === null) reset()
+    // если надо сделать сброс таймера после удаления акттивности
+  })
 
 const isStartButtonDisabled = props.timelineItem.hour !== currentHour()
 </script>
