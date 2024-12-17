@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { ArrowPathIcon, PlayIcon, PauseIcon } from '@heroicons/vue/24/outline';
 import { BUTTON_TYPE_PRIMARY, BUTTON_TYPE_SUCCESS, BUTTON_TYPE_WARNING, MILLISECONDS_IN_SECONDS } from '@/constants';
 import { isTimelineItemValid } from '@/validators';
@@ -20,7 +20,7 @@ const isRunning = ref(false)
 
 function start() {
   isRunning.value = setInterval(() => {
-    updateTimelineItemActivitySeconds(props.timelineItem, 1)
+    updateTimelineItemActivitySeconds(props.timelineItem, props.timelineItem.activitySeconds + 1)
     seconds.value++
   }, MILLISECONDS_IN_SECONDS);
 }
@@ -30,9 +30,15 @@ function stop() {
 }
 function reset() {
   stop()
-  updateTimelineItemActivitySeconds(props.timelineItem, -seconds.value)
+  updateTimelineItemActivitySeconds(props.timelineItem, props.timelineItem.activitySeconds - seconds.value)
   seconds.value = 0
 }
+
+watch(() => props.timelineItem.activityId, () => {
+  // if (props.timelineItem.activityId === null) reset()
+  // если надо сделать сброс таймера после удаления акттивности
+  updateTimelineItemActivitySeconds(props.timelineItem, seconds.value)
+})
 
 const isStartButtonDisabled = props.timelineItem.hour !== currentHour()
 </script>
