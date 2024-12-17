@@ -4,8 +4,8 @@ import { activities } from '@/activities'
 
 export const timelineItems = ref(generateTimelineItems(activities.value))
 
-export function updateTimelineItem(timelineItem, field) {
-  Object.assign(timelineItem, field)
+export function updateTimelineItem(timelineItem, fields) {
+  Object.assign(timelineItem, fields)
 }
 
 export function resetTimelineActivities(activity) {
