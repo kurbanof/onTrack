@@ -12,7 +12,7 @@ export function updateTimelineItem(timelineItem, fields) {
 
 export function resetTimelineActivities(activity) {
   timelineItems.value
-    .filter((timelineItem) => hasActivity(timelineItem, activity) )
+    .filter((timelineItem) => hasActivity(timelineItem, activity))
     .forEach((timelineItem) => updateTimelineItem(timelineItem, {
       activityId: null,
       activitySeconds: 0
@@ -24,9 +24,10 @@ export function getTotalActivitySeconds(activity) {
   return timelineItems.value.filter((timelineItem) => hasActivity(timelineItem, activity))
     .reduce((totalSeconds, timelineItem) => Math.round(timelineItem.activitySeconds + totalSeconds), 0)
 }
-
-export function scrollToHour(hour = null, isSmooth = true) {
-  hour ??= currentHour()
+export function scrollToCurrentHour(isSmooth = true) {
+  scrollToHour(currentHour(), isSmooth)
+}
+export function scrollToHour(hour, isSmooth = true) {
   const el = hour === MIDNIGT_HOUR ? document.body : timelineItemRefs.value[hour - 1].$el
   el.scrollIntoView({ behavior: isSmooth ? 'smooth' : 'instant' })
 }
