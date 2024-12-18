@@ -1,12 +1,17 @@
 <script setup>
-import { navigate } from '@/router'
-import { PAGE_TIMELINE } from '../constants'
+import { currentPage, navigate } from '@/router'
+import { PAGE_TIMELINE } from '@/constants'
+import { scrollToHour } from '@/timeline-items'
+
+function handleClick() {
+  currentPage.value === PAGE_TIMELINE ? scrollToHour() : navigate(PAGE_TIMELINE)
+}
 </script>
 
 <template>
   <a
     :href="`#${PAGE_TIMELINE}`"
-    @click="navigate(PAGE_TIMELINE)"
+    @click="handleClick"
   >
     <img
       src="../assets/img/logo.png"
