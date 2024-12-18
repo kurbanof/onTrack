@@ -24,7 +24,7 @@ export function getTotalActivitySeconds(activity) {
   return timelineItems.value.filter((timelineItem) => hasActivity(timelineItem, activity))
     .reduce((totalSeconds, timelineItem) => Math.round(timelineItem.activitySeconds + totalSeconds), 0)
 }
-export function scrollToCurrentHour(isSmooth = true) {
+export function scrollToCurrentHour(isSmooth = false) {
   scrollToHour(currentHour(), isSmooth)
 }
 export function scrollToHour(hour, isSmooth = true) {

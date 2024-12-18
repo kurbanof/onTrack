@@ -8,7 +8,7 @@ import TheProgress from './pages/TheProgress.vue'
 export const currentPage = ref(normalizePageHash())
 
 export const routs = {
-  [PAGE_TIMELINE]: TheTimeline ,
+  [PAGE_TIMELINE]: TheTimeline,
   [PAGE_ACTIVITIES]: TheActivities,
   [PAGE_PROGRESS]: TheProgress,
 }
@@ -23,6 +23,6 @@ export function normalizePageHash() {
   }
 }
 export function navigate(page) {
-  document.body.scrollIntoView()
+  document.body.scrollIntoView({ behavior: currentPage.value === page ? 'smooth' : 'instant' })
   currentPage.value = page
 }
