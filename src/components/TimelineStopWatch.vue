@@ -6,6 +6,7 @@ import { currentHour, formatSeconds } from '@/functions';
 import { updateTimelineItem } from '@/timeline-items'
 import BaseButton from '@/components/UI/BaseButton.vue';
 import BaseIcon from '@/components/UI/BaseIcon.vue';
+import { ICON_ARROW_PATH, ICON_PLAY, ICON_PAUSE } from '@/icons'
 
 const props = defineProps({
   timelineItem: {
@@ -53,7 +54,7 @@ const isStartButtonDisabled = props.timelineItem.hour !== currentHour()
       @click="reset"
     >
       <BaseIcon
-        name="ArrowPath"
+        :name="ICON_ARROW_PATH"
         class="h-8"
       />
     </BaseButton>
@@ -67,7 +68,7 @@ const isStartButtonDisabled = props.timelineItem.hour !== currentHour()
       @click="stop"
     >
       <BaseIcon
-        name="Pause"
+        :name="ICON_PAUSE"
         class="h-8"
       />
     </BaseButton>
@@ -79,7 +80,7 @@ const isStartButtonDisabled = props.timelineItem.hour !== currentHour()
       @click="start"
     >
       <BaseIcon
-        name="Play"
+        :name="ICON_PLAY"
         class="h-8"
       />
     </BaseButton>

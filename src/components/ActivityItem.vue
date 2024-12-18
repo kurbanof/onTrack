@@ -1,8 +1,9 @@
 <script setup>
-import { updateActivities, deleteActivity } from '@/activities'
-import { resetTimelineActivities } from '@/timeline-items'
 import { PERIOD_SELECT_OPTIONS, BUTTON_TYPE_DANGER } from '@/constants'
 import { isActivityValid } from '@/validators'
+import { updateActivities, deleteActivity } from '@/activities'
+import { resetTimelineActivities } from '@/timeline-items'
+import { ICON_TRASH } from '@/icons'
 import ActivitySecondsToComplete from '@/components/ActivitySecondsToComplete.vue'
 import BaseSelect from '@/components/UI/BaseSelect.vue'
 import BaseButton from '@/components/UI/BaseButton.vue'
@@ -29,7 +30,7 @@ function deleteAndResetActivity(activity) {
         @click="deleteAndResetActivity(activity)"
       >
         <BaseIcon
-          name="Trash"
+          :name="ICON_TRASH"
           class="h-8"
         />
       </BaseButton>

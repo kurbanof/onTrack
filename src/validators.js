@@ -1,7 +1,12 @@
 import { BUTTON_TYPES, NAV_ITEMS, HOURS_IN_DAY, MIDNIGT_HOUR } from './constants'
+import { ICONS } from '@/icons'
 
 export function isPageValid(page) {
   return NAV_ITEMS.some(navItem => navItem.page === page)
+}
+
+export function isIconValid(icon) {
+  return Object.keys(ICONS).includes(icon)
 }
 
 export function isNavItemValid(navItem) {
@@ -43,11 +48,6 @@ export function isActivityValid({ id, name, secondsToComplete }) {
   }
   return [isNotEmptyString(id), isNotEmptyString(name), isNumber(secondsToComplete)].every(Boolean)
 }
-
-// export function findMatchingOption(options, match) {
-//   const item = options.find((item) => item.value === match)
-//   return item?.value
-// }
 
 export function isNotEmptyString(value) {
   return isString(value) && value.length > 0

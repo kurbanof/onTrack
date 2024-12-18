@@ -1,7 +1,8 @@
 <script setup>
 import { navigate } from '@/router'
 import { PAGE_PROGRESS } from '../constants'
-import BaseIcon from './UI/BaseIcon.vue';
+import BaseIcon from '@/components/UI/BaseIcon.vue'
+import { ICON_CHECK_CIRCLE, ICON_ELLIPSIS_HORIZONTAL_CIRCLE  } from '@/icons'
 </script>
 <template>
   <a
@@ -15,7 +16,7 @@ import BaseIcon from './UI/BaseIcon.vue';
     >
       Day complete!
       <BaseIcon
-        name="CheckCircle"
+        :name="ICON_CHECK_CIRCLE"
         class="h-7 text-green-500"
       />
     </div>
@@ -25,7 +26,7 @@ import BaseIcon from './UI/BaseIcon.vue';
     >
       <div>Progress: <span>30%</span></div>
       <BaseIcon
-        name="EllipsisHorizontalCircle"
+        :name="ICON_ELLIPSIS_HORIZONTAL_CIRCLE"
         class="h-7 text-blue-500"
       />
     </div>
