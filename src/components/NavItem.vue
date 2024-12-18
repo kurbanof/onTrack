@@ -1,8 +1,9 @@
 <script setup>
 import { computed } from 'vue';
+import { PAGE_ACTIVITIES } from '../constants'
 import { currentPage, navigate } from '@/router';
 import { isNavItemValid } from '@/validators';
-import { PAGE_ACTIVITIES } from '../constants'
+import BaseIcon from './UI/BaseIcon.vue';
 
 const props = defineProps({
   navItem: {
@@ -26,8 +27,8 @@ const hoverClasses = 'transition hover:duration-200 flex-1 border-4 border-x-2 h
       :class="classes"
       @click="navigate(navItem.page)"
     >
-      <component
-        :is="navItem.icon"
+      <BaseIcon
+        :name="navItem.icon"
         class="h-6 w-6"
       /> {{ navItem.page }}
     </a>

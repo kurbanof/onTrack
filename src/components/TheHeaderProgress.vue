@@ -1,7 +1,7 @@
 <script setup>
-import { CheckCircleIcon, EllipsisHorizontalCircleIcon } from '@heroicons/vue/24/solid'
 import { navigate } from '@/router'
 import { PAGE_PROGRESS } from '../constants'
+import BaseIcon from './UI/BaseIcon.vue';
 </script>
 <template>
   <a
@@ -14,14 +14,20 @@ import { PAGE_PROGRESS } from '../constants'
       class="flex items-center gap-1"
     >
       Day complete!
-      <CheckCircleIcon class="h-7 text-green-500" />
+      <BaseIcon
+        name="CheckCircle"
+        class="h-7 text-green-500"
+      />
     </div>
     <div
       v-else
       class="flex items-center gap-1"
     >
       <div>Progress: <span>30%</span></div>
-      <EllipsisHorizontalCircleIcon class="h-7 text-blue-500" />
+      <BaseIcon
+        name="EllipsisHorizontalCircle"
+        class="h-7 text-blue-500"
+      />
     </div>
   </a>
 </template>

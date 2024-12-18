@@ -1,11 +1,11 @@
 <script setup>
 import { ref, watch } from 'vue'
-import { ArrowPathIcon, PlayIcon, PauseIcon } from '@heroicons/vue/24/outline';
 import { BUTTON_TYPE_PRIMARY, BUTTON_TYPE_SUCCESS, BUTTON_TYPE_WARNING, MILLISECONDS_IN_SECONDS } from '@/constants';
 import { isTimelineItemValid } from '@/validators';
 import { currentHour, formatSeconds } from '@/functions';
 import { updateTimelineItem } from '@/timeline-items'
 import BaseButton from '@/components/UI/BaseButton.vue';
+import BaseIcon from '@/components/UI/BaseIcon.vue';
 
 const props = defineProps({
   timelineItem: {
@@ -52,7 +52,10 @@ const isStartButtonDisabled = props.timelineItem.hour !== currentHour()
       :disabled="!seconds"
       @click="reset"
     >
-      <ArrowPathIcon class="h-8" />
+      <BaseIcon
+        name="ArrowPath"
+        class="h-8"
+      />
     </BaseButton>
 
     <div class="flex grow items-center  rounded px-2 text-3xl outline-none bg-gray-100 ">
@@ -63,7 +66,10 @@ const isStartButtonDisabled = props.timelineItem.hour !== currentHour()
       :type="BUTTON_TYPE_WARNING"
       @click="stop"
     >
-      <PauseIcon class="h-8" />
+      <BaseIcon
+        name="Pause"
+        class="h-8"
+      />
     </BaseButton>
 
     <BaseButton
@@ -72,7 +78,10 @@ const isStartButtonDisabled = props.timelineItem.hour !== currentHour()
       :disabled="isStartButtonDisabled"
       @click="start"
     >
-      <PlayIcon class="h-8" />
+      <BaseIcon
+        name="Play"
+        class="h-8"
+      />
     </BaseButton>
   </div>
 </template>
