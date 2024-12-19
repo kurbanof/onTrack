@@ -29,7 +29,7 @@ const hoverClasses = 'transition hover:duration-200 flex-1 border-4 border-x-2 h
     >
       <BaseIcon
         :name="navItem.icon"
-        class="h-6 w-6"
+        classes="h-6 w-6"
       /> {{ navItem.page }}
     </a>
   </li>

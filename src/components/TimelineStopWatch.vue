@@ -53,10 +53,7 @@ const isStartButtonDisabled = props.timelineItem.hour !== currentHour()
       :disabled="!seconds"
       @click="reset"
     >
-      <BaseIcon
-        :name="ICON_ARROW_PATH"
-        class="h-8"
-      />
+      <BaseIcon :name="ICON_ARROW_PATH" />
     </BaseButton>
 
     <div class="flex grow items-center  rounded px-2 text-3xl outline-none bg-gray-100 ">
@@ -67,10 +64,7 @@ const isStartButtonDisabled = props.timelineItem.hour !== currentHour()
       :type="BUTTON_TYPE_WARNING"
       @click="stop"
     >
-      <BaseIcon
-        :name="ICON_PAUSE"
-        class="h-8"
-      />
+      <BaseIcon :name="ICON_PAUSE" />
     </BaseButton>
 
     <BaseButton
@@ -79,10 +73,7 @@ const isStartButtonDisabled = props.timelineItem.hour !== currentHour()
       :disabled="isStartButtonDisabled"
       @click="start"
     >
-      <BaseIcon
-        :name="ICON_PLAY"
-        class="h-8"
-      />
+      <BaseIcon :name="ICON_PLAY" />
     </BaseButton>
   </div>
 </template>

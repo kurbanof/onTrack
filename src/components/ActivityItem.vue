@@ -29,10 +29,7 @@ function deleteAndResetActivity(activity) {
         class="rounded-none"
         @click="deleteAndResetActivity(activity)"
       >
-        <BaseIcon
-          :name="ICON_TRASH"
-          class="h-8"
-        />
+        <BaseIcon :name="ICON_TRASH" />
       </BaseButton>
       <span class="flex  items-center grow truncate text-2xl border-4 px-2">
         {{ activity.name }}

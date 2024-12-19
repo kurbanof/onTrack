@@ -17,7 +17,7 @@ import { ICON_CHECK_CIRCLE, ICON_ELLIPSIS_HORIZONTAL_CIRCLE  } from '@/icons'
       Day complete!
       <BaseIcon
         :name="ICON_CHECK_CIRCLE"
-        class="h-7 text-green-500"
+        classes="h-7 text-green-500"
       />
     </div>
     <div
@@ -27,7 +27,7 @@ import { ICON_CHECK_CIRCLE, ICON_ELLIPSIS_HORIZONTAL_CIRCLE  } from '@/icons'
       <div>Progress: <span>30%</span></div>
       <BaseIcon
         :name="ICON_ELLIPSIS_HORIZONTAL_CIRCLE"
-        class="h-7 text-blue-500"
+        classes="h-7 text-blue-500"
       />
     </div>
   </a>
