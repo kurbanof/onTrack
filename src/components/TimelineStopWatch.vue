@@ -18,10 +18,11 @@ const props = defineProps({
 
 const seconds = ref(props.timelineItem.activitySeconds)
 const isRunning = ref(false)
+const temp = 120
 
 function start() {
   isRunning.value = setInterval(() => {
-    updateTimelineItem(props.timelineItem, { activitySeconds: props.timelineItem.activitySeconds + 1 })
+    updateTimelineItem(props.timelineItem, { activitySeconds: props.timelineItem.activitySeconds + temp })
     seconds.value++
   }, MILLISECONDS_IN_SECONDS);
 }
@@ -31,7 +32,7 @@ function stop() {
 }
 function reset() {
   stop()
-  updateTimelineItem(props.timelineItem, { activitySeconds: props.timelineItem.activitySeconds - seconds.value })
+  updateTimelineItem(props.timelineItem, { activitySeconds: props.timelineItem.activitySeconds - seconds.value * temp })
   seconds.value = 0
 }
 

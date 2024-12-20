@@ -31,6 +31,6 @@ export const MINUTES_IN_HOUR = 60
 export const SECONDS_IN_HOUR = SECONDS_IN_MINUTE * MINUTES_IN_HOUR
 export const HOURS_IN_DAY = 24
 export const MIDNIGT_HOUR = 0
-
+export const HUNDRED_PERCENT = 100
 export const PERIOD_SELECT_OPTIONS = generatePeriodSelectOptions()
 
