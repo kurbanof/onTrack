@@ -39,7 +39,7 @@ function reset() {
 watch(
   () => props.timelineItem.activityId,
   () => {
-    updateTimelineItem(props.timelineItem, { activitySeconds: seconds.value })
+    updateTimelineItem(props.timelineItem, { activitySeconds: seconds.value * temp })
     // if (props.timelineItem.activityId === null) reset()
     // если надо сделать сброс таймера после удаления акттивности
   })

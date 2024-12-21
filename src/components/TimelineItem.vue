@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import { activitySelectOptions } from '@/activities'
 import { updateTimelineItem } from '@/timeline-items'
 import { currentHour } from '@/functions';
-import { isTimelineItemValid, isUndefined } from '@/validators'
+import { isTimelineItemValid } from '@/validators'
 import TimelineHour from '@/components/TimelineHour.vue'
 import TimelineStopWatch from '@/components/TimelineStopWatch.vue';
 import BaseSelect from './UI/BaseSelect.vue'
@@ -16,10 +16,6 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits({
-  scrollToHour: isUndefined,
-})
-
 const isCurrentHour = ref(props.timelineItem.hour === currentHour())
 </script>
 
@@ -28,15 +24,12 @@ const isCurrentHour = ref(props.timelineItem.hour === currentHour())
     class="relative flex flex-col gap-2 border-t-4 border-gray-100 px-5 py-10"
     :class="{ 'border-green-400/50': isCurrentHour }"
   >
-    <TimelineHour
-      :hour="timelineItem.hour"
-      @click.prevent="emit('scrollToHour')"
-    />
+    <TimelineHour :hour="timelineItem.hour" />
     <BaseSelect
       placeholder="Rest"
       :options="activitySelectOptions"
       :selected="timelineItem.activityId"
-      @select="updateTimelineItem(timelineItem, {activityId: $event})"
+      @select="updateTimelineItem(timelineItem, { activityId: $event })"
     />
     <TimelineStopWatch :timeline-item="timelineItem" />
   </li>

@@ -18,9 +18,8 @@ const progress = computed(() => getActivityProgress(props.activity))
       />
     </div>
     <div class="flex justify-between">
-      <span>{{ progress }}%</span>
-      <span>{{ color }}</span>
-      <span>{{ timeProgress }}</span>
+      <span class="rounded w-[100px] h-10 p-2 text-center bg-purple-100 ">{{ progress }}%</span>
+      <span class="rounded w-[200px] h-10 p-2 text-center bg-purple-100 ">{{ timeProgress }}</span>
     </div>
   </li>
 </template>

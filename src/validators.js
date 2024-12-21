@@ -49,9 +49,6 @@ export function isActivityValid({ id, name, secondsToComplete }) {
   return [isNotEmptyString(id), isNotEmptyString(name), isNumber(secondsToComplete)].every(Boolean)
 }
 
-export function isNotEmptyString(value) {
-  return isString(value) && value.length > 0
-}
 export function isUndefinedOrNull(value) {
   return isUndefined(value) || isNull(value)
 }
@@ -65,6 +62,9 @@ export function isSelectValueValid(value) {
 
 export function isNumberOrNull(value) {
   return isNumber(value) || isNull(value)
+}
+function isNotEmptyString(value) {
+ return isString(value) && value.length > 0
 }
 function isString(value) {
   return typeof value === 'string'
