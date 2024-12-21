@@ -1,9 +1,9 @@
 <script setup>
 import { computed } from 'vue'
+import { getProgressColorClass } from '@/functions'
 import { getActivityProgress } from '../activities'
 
 const props = defineProps(['index', 'activity'])
-const color = ['red', 'orange', 'yellow', 'green'][props.index]
 const timeProgress = ['03:00 / 30:00', '15:00 / 30:00', '21:00 / 30:00', '30:00 / 30:00'][props.index]
 
 const progress = computed(() => getActivityProgress(props.activity))
@@ -13,7 +13,7 @@ const progress = computed(() => getActivityProgress(props.activity))
     <div class="text-2xl ">{{ activity.name }}</div>
     <div class="flex h-8 overflow-hidden rounded bg-gray-100 border border-gray-200  ">
       <div
-        :class="`bg-${color}-300`"
+        :class="getProgressColorClass(progress)"
         :style="`width: ${progress}%`"
       />
     </div>
