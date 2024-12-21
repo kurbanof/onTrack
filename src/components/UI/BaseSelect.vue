@@ -39,11 +39,7 @@ function select(value) {
       class="rounden w-full truncate rounded bg-gray-100 px-2 py-1 text-2xl outline-none"
       @change="select($event.target.value)"
     >
-      <option
-        :selected="isNotSelected"
-        disabled
-        value=""
-      >
+      <option :selected="isNotSelected" disabled value="">
         {{ placeholder }}
       </option>
       <option

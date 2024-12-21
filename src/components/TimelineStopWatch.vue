@@ -23,7 +23,7 @@ const temp = 120
 function start() {
   isRunning.value = setInterval(() => {
     updateTimelineItem(props.timelineItem, { activitySeconds: props.timelineItem.activitySeconds + temp })
-    seconds.value++
+    seconds.value += temp
   }, MILLISECONDS_IN_SECONDS);
 }
 function stop() {
@@ -32,14 +32,14 @@ function stop() {
 }
 function reset() {
   stop()
-  updateTimelineItem(props.timelineItem, { activitySeconds: props.timelineItem.activitySeconds - seconds.value * temp })
+  updateTimelineItem(props.timelineItem, { activitySeconds: props.timelineItem.activitySeconds - seconds.value })
   seconds.value = 0
 }
 
 watch(
   () => props.timelineItem.activityId,
   () => {
-    updateTimelineItem(props.timelineItem, { activitySeconds: seconds.value * temp })
+    updateTimelineItem(props.timelineItem, { activitySeconds: seconds.value })
     // if (props.timelineItem.activityId === null) reset()
     // если надо сделать сброс таймера после удаления акттивности
   })
