@@ -10,7 +10,7 @@ const props = defineProps({
     validator: isActivityValid
   }
 })
-const { colorClass, percentage, trackedActivitySeconds } = useProgress(props.activity)
+const { colorClass, percentage, trackedSeconds } = useProgress(props.activity)
 </script>
 <template>
   <li class="flex flex-col gap-2 p-4 text-xl border-4 mx-5 mt-4 my-10">
@@ -24,7 +24,7 @@ const { colorClass, percentage, trackedActivitySeconds } = useProgress(props.act
     <div class="flex justify-between">
       <span class="rounded w-[100px] p-2 text-center bg-purple-100 ">{{ percentage }}%</span>
       <span class="rounded p-2 px-8 text-center bg-purple-100 ">
-        {{ formatSeconds(trackedActivitySeconds) }} /
+        {{ formatSeconds(trackedSeconds) }} /
         {{ formatSeconds(activity.secondsToComplete) }}
       </span>
     </div>
