@@ -11,6 +11,7 @@ const props = defineProps({
   }
 })
 const { colorClass, percentage, trackedSeconds } = useProgress(props.activity)
+const classes = 'rounded  py-2 px-8 text-center border bg-purple-100  border-purple-300/50  text-purple-700'
 </script>
 <template>
   <li class="flex flex-col gap-2 p-4 text-xl border-4 mx-5 mt-4 my-10">
@@ -22,8 +23,9 @@ const { colorClass, percentage, trackedSeconds } = useProgress(props.activity)
       />
     </div>
     <div class="flex justify-between">
-      <span class="rounded w-[100px] p-2 text-center bg-purple-100 ">{{ percentage }}%</span>
-      <span class="rounded p-2 px-8 text-center bg-purple-100 ">
+      <span :class="classes">{{
+        percentage }}%</span>
+      <span :class="classes">
         {{ formatSeconds(trackedSeconds) }} /
         {{ formatSeconds(activity.secondsToComplete) }}
       </span>
