@@ -23,7 +23,7 @@ const classes = 'rounded  py-2 px-8 text-center border bg-purple-100  border-pur
       />
     </div>
     <div class="flex justify-between">
-      <span :class="classes">{{
+      <span :class="[classes, 'min-w-28']">{{
         percentage }}%</span>
       <span :class="classes">
         {{ formatSeconds(trackedSeconds) }} /

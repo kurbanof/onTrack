@@ -1,23 +1,16 @@
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 import { MILLISECONDS_IN_SECONDS } from '@/constants';
-import { updateTimelineItem } from '@/timeline-items'
-export function useStopwatch(timelineItem) {
+export function useStopwatch(initialSeconds, handleSecondsChange) {
 
-  const seconds = ref(timelineItem.activitySeconds)
+  const seconds = ref(initialSeconds)
   const isRunning = ref(false)
   const temp = 120
 
-  watch(
-    () => timelineItem.activityId,
-    () => {
-      updateTimelineItem(timelineItem, { activitySeconds: seconds.value })
-      // if (timelineItem.activityId === null) reset()
-      // если надо сделать сброс таймера после удаления акттивности
-    })
+
   function start() {
     isRunning.value = setInterval(() => {
-      updateTimelineItem(timelineItem, { activitySeconds: timelineItem.activitySeconds + temp })
       seconds.value += temp
+      handleSecondsChange()
     }, MILLISECONDS_IN_SECONDS);
   }
   function stop() {
@@ -26,8 +19,8 @@ export function useStopwatch(timelineItem) {
   }
   function reset() {
     stop()
-    updateTimelineItem(timelineItem, { activitySeconds: timelineItem.activitySeconds - seconds.value })
     seconds.value = 0
+    handleSecondsChange()
   }
 
   return {

@@ -1,9 +1,11 @@
 <script setup>
-import { onActivated } from 'vue';
+import { onActivated, onMounted } from 'vue';
 import TimelineItem from '@/components/TimelineItem.vue'
 import { timelineItems, timelineItemRefs, scrollToCurrentHour } from '@/timeline-items';
 
+onMounted(() => setTimeout(() => scrollToCurrentHour(), 50))
 onActivated(scrollToCurrentHour)
+// onActivated(scrollToCurrentHour)
 </script>
 
 <template>

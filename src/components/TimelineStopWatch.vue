@@ -1,7 +1,9 @@
 <script setup>
+import { watch } from 'vue'
 import { BUTTON_TYPE_PRIMARY, BUTTON_TYPE_SUCCESS, BUTTON_TYPE_WARNING } from '@/constants';
 import { isTimelineItemValid } from '@/validators';
 import { currentHour, formatSeconds } from '@/functions';
+import { updateTimelineItem } from '@/timeline-items'
 import BaseButton from '@/components/UI/BaseButton.vue';
 import BaseIcon from '@/components/UI/BaseIcon.vue';
 import { ICON_ARROW_PATH, ICON_PLAY, ICON_PAUSE } from '@/icons'
@@ -20,7 +22,20 @@ const {
   start,
   stop,
   reset
-} = useStopwatch(props.timelineItem)
+} = useStopwatch(props.timelineItem.activitySeconds, updateTimelineItemActivitySeconds)
+
+watch(
+  () => props.timelineItem.activityId,
+  updateTimelineItemActivitySeconds
+)
+
+function updateTimelineItemActivitySeconds() {
+  updateTimelineItem(props.timelineItem, {
+    activitySeconds: seconds.value
+    // if (props.timelineItem.activityId === null) reset()
+    // если надо сделать сброс таймера после удаления активности
+  })
+}
 </script>
 
 <template>
