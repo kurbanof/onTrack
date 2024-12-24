@@ -1,7 +1,9 @@
 <script setup>
+import { computed } from 'vue';
 import { formatSeconds } from '@/functions'
 import { isActivityValid } from '@/validators'
 import { useProgress } from '@/composables/progress';
+import { HUNDRED_PERCENT } from '@/constants';
 
 const props = defineProps({
   activity: {
@@ -10,7 +12,8 @@ const props = defineProps({
     validator: isActivityValid
   }
 })
-const { colorClass, percentage, trackedSeconds } = useProgress(props.activity)
+const { colorClass, percentage, trackedActivitySeconds } = useProgress(props.activity)
+const minPercentage = computed(() => Math.min(percentage.value, HUNDRED_PERCENT))
 const classes = 'rounded  py-2 px-8 text-center border bg-purple-100  border-purple-300/50  text-purple-700'
 </script>
 <template>
@@ -18,15 +21,15 @@ const classes = 'rounded  py-2 px-8 text-center border bg-purple-100  border-pur
     <div class="text-2xl ">{{ activity.name }}</div>
     <div class="flex h-8 overflow-hidden rounded bg-gray-100 border border-gray-200  ">
       <div
-        :class="colorClass"
-        :style="`width: ${percentage}%`"
+        :class="[colorClass, 'transition-all']"
+        :style="{ width: `${minPercentage}%` }"
       />
     </div>
     <div class="flex justify-between">
-      <span :class="[classes, 'min-w-28']">{{
-        percentage }}%</span>
+      <span :class="[classes, 'min-w-28']">
+        {{ minPercentage }}%</span>
       <span :class="classes">
-        {{ formatSeconds(trackedSeconds) }} /
+        {{ formatSeconds(trackedActivitySeconds) }} /
         {{ formatSeconds(activity.secondsToComplete) }}
       </span>
     </div>

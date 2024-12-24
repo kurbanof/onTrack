@@ -1,10 +1,9 @@
 <script setup>
-import { computed, watchEffect } from 'vue'
 import { navigate } from '@/router'
 import { PAGE_PROGRESS, HUNDRED_PERCENT } from '../constants'
 import { useTotalProgress } from '@/composables/total-progress'
 import BaseIcon from '@/components/UI/BaseIcon.vue'
-import { ICON_CHECK_CIRCLE, ICON_ELLIPSIS_HORIZONTAL_CIRCLE } from '@/icons'
+import { ICON_CHECK_CIRCLE } from '@/icons'
 const { percentage, colorClass } = useTotalProgress()
 
 // const iconColor = watchEffect(() => console.log(typeof ('text' + colorClass.value.slice(2))))
