@@ -1,7 +1,7 @@
 <script setup>
 import { formatSeconds } from '@/functions'
 import { isActivityValid } from '@/validators'
-import { useProgress } from '@/composbles/progress';
+import { useProgress } from '@/composables/progress';
 
 const props = defineProps({
   activity: {

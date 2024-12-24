@@ -7,7 +7,7 @@ import { updateTimelineItem } from '@/timeline-items'
 import BaseButton from '@/components/UI/BaseButton.vue';
 import BaseIcon from '@/components/UI/BaseIcon.vue';
 import { ICON_ARROW_PATH, ICON_PLAY, ICON_PAUSE } from '@/icons'
-import { useStopwatch } from '@/composbles/stopwatch';
+import { useStopwatch } from '@/composables/stopwatch';
 
 const props = defineProps({
   timelineItem: {
