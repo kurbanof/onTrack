@@ -1,8 +1,8 @@
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { activitySelectOptions } from '@/activities'
 import { updateTimelineItem } from '@/timeline-items'
-import { currentHour } from '@/functions';
+import { now } from '@/time';
 import { isTimelineItemValid } from '@/validators'
 import TimelineHour from '@/components/TimelineHour.vue'
 import TimelineStopWatch from '@/components/TimelineStopWatch.vue';
@@ -16,7 +16,7 @@ const props = defineProps({
   },
 })
 
-const isCurrentHour = ref(props.timelineItem.hour === currentHour())
+const isCurrentHour = computed(() => props.timelineItem.hour === now.value.getHours())
 </script>
 
 <template>
