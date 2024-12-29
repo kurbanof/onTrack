@@ -1,10 +1,10 @@
 import { ref } from 'vue'
 import { MILLISECONDS_IN_SECONDS } from '@/constants';
 export function useStopwatch(initialSeconds) {
-  
+
   const seconds = ref(initialSeconds)
   const isRunning = ref(false)
-  const temp = 120
+  const temp = 1
 
 
   function start() {
