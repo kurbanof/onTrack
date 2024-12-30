@@ -22,7 +22,7 @@ const isCurrentHour = computed(() => props.timelineItem.hour === now.value.getHo
 <template>
   <li
     class="relative flex flex-col gap-2 border-t-4 border-gray-100 px-5 py-10"
-    :class="{ 'border-green-400/50': isCurrentHour }"
+    :class="{ 'border-green-300/50': isCurrentHour }"
   >
     <TimelineHour :hour="timelineItem.hour" />
     <BaseSelect
