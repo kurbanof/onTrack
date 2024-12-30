@@ -1,5 +1,6 @@
 <script setup>
 import { computed } from 'vue';
+import { PAGE_TIMELINE } from '@/constants'
 import { currentPage, navigate } from '@/router';
 import { isNavItemValid } from '@/validators';
 import { scrollToCurrentHour } from '@/timeline-items'
@@ -13,21 +14,22 @@ const props = defineProps({
   }
 })
 const classes = computed(() => [
-  { 'bg-slate-100 transition duration-200': currentPage.value === props.navItem.page },
-  'duration-900 flex flex-col items-center  p-2  capitalize'
+  'duration-900 flex flex-col items-center  p-2  capitalize border-4 border-x-2',
+  currentPage.value === props.navItem.page
+    ? 'bg-slate-100 transition duration-200'
+    : 'transition hover:duration-200 hover:bg-slate-100'
 ])
-const hoverClasses = 'transition hover:duration-200 flex-1 border-4 border-x-2 hover:bg-slate-100'
 
 function handleClick() {
   currentPage.value === PAGE_TIMELINE && props.navItem.page === PAGE_TIMELINE
-  ? scrollToCurrentHour(true)
-  : navigate(props.navItem.page)
+    ? scrollToCurrentHour(true)
+    : navigate(props.navItem.page)
 }
 
 </script>
 
 <template>
-  <li :class="hoverClasses">
+  <li class="flex-1">
     <a
       :href="`#${navItem.page}`"
       :class="classes"
