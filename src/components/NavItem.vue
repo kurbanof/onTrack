@@ -16,8 +16,8 @@ const props = defineProps({
 const classes = computed(() => [
   'duration-900 flex flex-col items-center  p-2  capitalize border-4 border-x-2',
   currentPage.value === props.navItem.page
-    ? 'bg-slate-100 transition duration-200'
-    : 'transition hover:duration-200 hover:bg-slate-100'
+    ? 'bg-slate-200/55 transition duration-200'
+    : 'transition hover:duration-200 hover:bg-slate-100/80'
 ])
 
 function handleClick() {
