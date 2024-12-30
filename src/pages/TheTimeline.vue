@@ -8,6 +8,7 @@ import TheTimelineIndicator from '@/components/TheTimelineIndicator.vue';
 stopTimelineItemTimer()
 
 onMounted(() => setTimeout(() => scrollToCurrentHour(), 50))
+
 onActivated(() => {
   scrollToCurrentHour()
   startTimer()
