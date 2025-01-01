@@ -1,54 +1,26 @@
 <script setup>
-import { onMounted, watch, watchEffect } from 'vue'
 import { BUTTON_TYPE_PRIMARY, BUTTON_TYPE_SUCCESS, BUTTON_TYPE_WARNING } from '@/constants';
 import { isTimelineItemValid } from '@/validators';
 import { formatSeconds } from '@/functions';
-import { updateTimelineItem } from '@/timeline-items'
+import {
+  startTimelineItemTimer,
+  stopTimelineItemTimer,
+  resetTimelineItemTimer,
+  timelineItemTimer
+} from '@/timeline-items'
 import { now } from '@/time';
 import BaseButton from '@/components/UI/BaseButton.vue';
 import BaseIcon from '@/components/UI/BaseIcon.vue';
 import { ICON_ARROW_PATH, ICON_PLAY, ICON_PAUSE } from '@/icons'
-import { useStopwatch } from '@/composables/stopwatch';
 
-const props = defineProps({
+defineProps({
   timelineItem: {
     require: true,
     type: Object,
     validator: isTimelineItemValid
   }
 })
-const {
-  seconds,
-  isRunning,
-  start,
-  stop,
-  reset
-} = useStopwatch(props.timelineItem.activitySeconds)
 
-onMounted(() => {
-  if (props.timelineItem.isActive) {
-    start()
-  }
-})
-
-watchEffect(() => {
-  if (props.timelineItem.hour !== now.value.getHours() && isRunning.value) {
-    stop()
-  }
-})
-
-watchEffect(
-  () => updateTimelineItem(props.timelineItem, {
-    activitySeconds: seconds.value
-    // if (props.timelineItem.activityId === null) reset()
-    // если надо сделать сброс таймера после удаления активности
-  })
-)
-
-watch(isRunning, () => updateTimelineItem(props.timelineItem, {
-  isActive: Boolean(isRunning.value)
-}
-))
 </script>
 
 <template>
@@ -56,7 +28,7 @@ watch(isRunning, () => updateTimelineItem(props.timelineItem, {
     <BaseButton
       :type="BUTTON_TYPE_PRIMARY"
       :disabled="!timelineItem.activitySeconds"
-      @click="reset"
+      @click="$event => resetTimelineItemTimer(timelineItem)"
     >
       <BaseIcon :name="ICON_ARROW_PATH" />
     </BaseButton>
@@ -65,9 +37,9 @@ watch(isRunning, () => updateTimelineItem(props.timelineItem, {
       {{ formatSeconds(timelineItem.activitySeconds) }}
     </div>
     <BaseButton
-      v-if="isRunning"
+      v-if="timelineItemTimer && timelineItem.hours === now.getHours()"
       :type="BUTTON_TYPE_WARNING"
-      @click="stop"
+      @click="$event => stopTimelineItemTimer(timelineItem)"
     >
       <BaseIcon :name="ICON_PAUSE" />
     </BaseButton>
@@ -76,7 +48,7 @@ watch(isRunning, () => updateTimelineItem(props.timelineItem, {
       v-else
       :type="BUTTON_TYPE_SUCCESS"
       :disabled="timelineItem.hour !== now.getHours()"
-      @click="start"
+      @click="$event => startTimelineItemTimer(timelineItem)"
     >
       <BaseIcon :name="ICON_PLAY" />
     </BaseButton>
