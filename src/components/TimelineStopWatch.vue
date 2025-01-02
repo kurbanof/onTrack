@@ -37,7 +37,7 @@ defineProps({
       {{ formatSeconds(timelineItem.activitySeconds) }}
     </div>
     <BaseButton
-      v-if="timelineItemTimer && timelineItem.hours === now.getHours()"
+      v-if="timelineItemTimer && timelineItem.hour === now.getHours()"
       :type="BUTTON_TYPE_WARNING"
       @click="$event => stopTimelineItemTimer(timelineItem)"
     >
