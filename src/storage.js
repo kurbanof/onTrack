@@ -1,6 +1,6 @@
 import { APP_NAME } from '@/constants'
 import { activities } from '@/activities'
-import { timelineItems, activeTimelineItem } from '@/timeline-items'
+import { timelineItems, activeTimelineItem, resetTimelineItems } from '@/timeline-items'
 import { isToday, today, endofHour, toSeconds } from './time'
 import { startTimelineItemTimer, stopTimelineItemTimer } from './timeline-item-timer'
 
@@ -22,10 +22,14 @@ export function loadState() {
   activities.value = state.activities || activities.value
 
   const lastActiveAt = new Date(state.lastActiveAt)
+  
+  timelineItems.value = state.timelineItems ?? timelineItems.value
 
-  timelineItems.value = isToday(lastActiveAt)
-    ? syncIdleSeconds(state.timelineItems, lastActiveAt)
-    : timelineItems.value
+  if (activeTimelineItem.value && isToday(lastActiveAt)) {
+    timelineItems.value = syncIdleSeconds(state.timelineItems, lastActiveAt)
+  } else if (state.timelineItems && !isToday(lastActiveAt)) {
+    timelineItems.value = resetTimelineItems(state.timelineItems)
+  }
 
 }
 
