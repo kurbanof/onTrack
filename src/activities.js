@@ -11,6 +11,11 @@ export const activitySelectOptions = computed(() => generateActivitySelectOption
 export function createActivity(activity) {
   activities.value.push(activity)
 }
+
+export function initializeActivities(state) {
+  return activities.value = state.activities || []
+}
+
 export function deleteActivity(activity) {
   activities.value.splice(activities.value.indexOf(activity), 1)
 }
