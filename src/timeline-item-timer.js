@@ -17,7 +17,7 @@ export function startTimelineItemTimer(timelineItem) {
   updateTimelineItem(timelineItem, { isActive: true })
   timelineItemTimer.value = setInterval(() => {
     updateTimelineItem(timelineItem, {
-      activitySeconds: timelineItem.activitySeconds + 1
+      activitySeconds: timelineItem.activitySeconds + 1,
     })
   }, MILLISECONDS_IN_SECONDS)
 }
@@ -34,5 +34,3 @@ export function resetTimelineItemTimer(timelineItem) {
     stopTimelineItemTimer()
   }
 }
-
-

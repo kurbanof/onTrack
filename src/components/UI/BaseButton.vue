@@ -1,5 +1,11 @@
 <script>
-import { BUTTON_TYPE_PRIMARY, BUTTON_TYPE_NEUTRAL, BUTTON_TYPE_DANGER, BUTTON_TYPE_WARNING, BUTTON_TYPE_SUCCESS } from '@/constants'
+import {
+  BUTTON_TYPE_PRIMARY,
+  BUTTON_TYPE_NEUTRAL,
+  BUTTON_TYPE_DANGER,
+  BUTTON_TYPE_WARNING,
+  BUTTON_TYPE_SUCCESS,
+} from '@/constants'
 const typeClasses = {
   [BUTTON_TYPE_NEUTRAL]: 'bg-gray-200 enabled:hover:bg-gray-300 ',
   [BUTTON_TYPE_PRIMARY]: 'bg-blue-200 enabled:hover:bg-blue-300 ',
@@ -21,7 +27,8 @@ const props = defineProps({
 })
 const classes = [
   'rounded p-3 disabled:cursor-not-allowed disabled:opacity-50',
-  typeClasses[props.type]]
+  typeClasses[props.type],
+]
 </script>
 <template>
   <button :class="classes">

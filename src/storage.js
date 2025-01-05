@@ -8,9 +8,7 @@ export function syncState(shouldLoad = true) {
   shouldLoad ? loadState() : saveState()
 
   if (activeTimelineItem.value) {
-    shouldLoad
-      ? startTimelineItemTimer()
-      : stopTimelineItemTimer()
+    shouldLoad ? startTimelineItemTimer() : stopTimelineItemTimer()
   }
 }
 
@@ -26,12 +24,12 @@ function loadFromLocalStorage() {
 }
 
 function saveState() {
-  localStorage.setItem(APP_NAME, JSON.stringify({
-    timelineItems: timelineItems.value,
-    activities: activities.value,
-    lastActiveAt: today()
-  }))
+  localStorage.setItem(
+    APP_NAME,
+    JSON.stringify({
+      timelineItems: timelineItems.value,
+      activities: activities.value,
+      lastActiveAt: today(),
+    }),
+  )
 }
-
-
-

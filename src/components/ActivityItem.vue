@@ -23,7 +23,7 @@ function deleteAndResetActivity(activity) {
 </script>
 <template>
   <li class="flex flex-col gap-2 p-5">
-    <div class="flex gap-2 ">
+    <div class="flex gap-2">
       <BaseButton
         :type="BUTTON_TYPE_DANGER"
         class="rounded-none"
@@ -31,7 +31,7 @@ function deleteAndResetActivity(activity) {
       >
         <BaseIcon :name="ICON_TRASH" />
       </BaseButton>
-      <span class="flex  items-center grow truncate text-2xl border-4 px-2">
+      <span class="flex grow items-center truncate border-4 px-2 text-2xl">
         {{ activity.name }}
       </span>
     </div>
@@ -43,10 +43,7 @@ function deleteAndResetActivity(activity) {
         @select="updateActivities(activity, { secondsToComplete: $event || 0 })"
         class="grow"
       />
-      <RemainingActivitySeconds
-        v-if="activity.secondsToComplete"
-        :activity="activity"
-      />
+      <RemainingActivitySeconds v-if="activity.secondsToComplete" :activity="activity" />
     </div>
   </li>
 </template>

@@ -6,7 +6,6 @@ import { ICON_X_MARK } from '@/icons'
 import BaseButton from '@/components/UI/BaseButton.vue'
 import BaseIcon from '@/components/UI/BaseIcon.vue'
 
-
 const props = defineProps({
   placeholder: {
     required: true,
@@ -28,7 +27,6 @@ const isNotSelected = computed(() => isUndefinedOrNull(props.selected))
 function select(value) {
   emit('select', normalizeSelectValue(value))
 }
-
 </script>
 <template>
   <div class="flex gap-2">

@@ -5,11 +5,7 @@ import TheProgressEmptyState from '@/components/TheProgressEmptyState.vue'
 </script>
 <template>
   <ul v-if="trackedActivities.length">
-    <ProgressItem
-      v-for="activity in trackedActivities"
-      :key="activity.id"
-      :activity="activity"
-    />
+    <ProgressItem v-for="activity in trackedActivities" :key="activity.id" :activity="activity" />
   </ul>
   <TheProgressEmptyState v-else />
 </template>

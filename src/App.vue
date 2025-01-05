@@ -2,7 +2,6 @@
 import { currentPage, routs } from '@/router'
 import TheHeader from './components/TheHeader.vue'
 import TheNav from './components/TheNav.vue'
-
 </script>
 
 <template>

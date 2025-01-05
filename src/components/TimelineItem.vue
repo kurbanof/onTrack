@@ -1,11 +1,11 @@
 <script setup>
-import { computed } from 'vue';
+import { computed } from 'vue'
 import { activitySelectOptions } from '@/activities'
 import { updateTimelineItem } from '@/timeline-items'
-import { now } from '@/time';
+import { now } from '@/time'
 import { isTimelineItemValid } from '@/validators'
 import TimelineHour from '@/components/TimelineHour.vue'
-import TimelineStopWatch from '@/components/TimelineStopWatch.vue';
+import TimelineStopWatch from '@/components/TimelineStopWatch.vue'
 import BaseSelect from './UI/BaseSelect.vue'
 
 const props = defineProps({

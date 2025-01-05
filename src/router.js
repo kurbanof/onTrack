@@ -1,4 +1,4 @@
-import { ref } from "vue"
+import { ref } from 'vue'
 import { isPageValid } from '@/validators'
 import { PAGE_TIMELINE, PAGE_ACTIVITIES, PAGE_PROGRESS } from './constants'
 import TheTimeline from './pages/TheTimeline.vue'

@@ -24,7 +24,6 @@ export const ICON_PAUSE = 'Pause'
 export const ICON_PLAY = 'Play'
 export const ICON_PLUS = 'Plus'
 
-
 export const ICONS = {
   [ICON_ELLIPSIS_HORIZONTAL_CIRCLE]: EllipsisHorizontalCircle,
   [ICON_CHECK_CIRCLE]: CheckCircle,

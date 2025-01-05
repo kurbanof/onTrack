@@ -1,13 +1,13 @@
 import { ref, computed } from 'vue'
 import { HOURS_IN_DAY, MIDNIGT_HOUR } from './constants'
-import { now, today, isToday, endofHour, toSeconds } from './time'
+import { today, isToday, endofHour, toSeconds } from './time'
 
 export const timelineItemRefs = ref([])
 
 export const timelineItems = ref([])
 
 export const activeTimelineItem = computed(() =>
-  timelineItems.value.find(({ isActive }) => isActive)
+  timelineItems.value.find(({ isActive }) => isActive),
 )
 
 export function initializeTimelineItems(state) {
@@ -20,7 +20,6 @@ export function initializeTimelineItems(state) {
   } else if (state.timelineItems && !isToday(lastActiveAt)) {
     resetTimelineItems()
   }
-
 }
 
 export function updateTimelineItem(timelineItem, fields) {
@@ -28,12 +27,12 @@ export function updateTimelineItem(timelineItem, fields) {
 }
 
 export function resetTimelineActivities(timelineItems, activity) {
-  filterTimelinesItemsByActivity(timelineItems, activity)
-    .forEach((timelineItem) => updateTimelineItem(timelineItem, {
+  filterTimelinesItemsByActivity(timelineItems, activity).forEach((timelineItem) =>
+    updateTimelineItem(timelineItem, {
       activityId: null,
-      activitySeconds: timelineItem.hour === now.value.getHours() ? timelineItem.activitySeconds : 0
-    })
-    )
+      activitySeconds: timelineItem.hour === today().getHours() ? timelineItem.activitySeconds : 0,
+    }),
+  )
 }
 
 export function calculateTrackedActivitySeconds(timelineItems, activity) {
@@ -43,7 +42,7 @@ export function calculateTrackedActivitySeconds(timelineItems, activity) {
 }
 
 export function scrollToCurrentHour(isSmooth = false) {
-  scrollToHour(now.value.getHours(), isSmooth)
+  scrollToHour(today().getHours(), isSmooth)
 }
 export function scrollToHour(hour, isSmooth = true) {
   const el = hour === MIDNIGT_HOUR ? document.body : timelineItemRefs.value[hour - 1].$el
@@ -54,14 +53,14 @@ function resetTimelineItems() {
   timelineItems.value.forEach((timelineItem) => {
     updateTimelineItem(timelineItem, {
       activitySeconds: 0,
-      isActive: false
+      isActive: false,
     })
   })
 }
 
 function syncIdleSeconds(lastActiveAt) {
   updateTimelineItem(activeTimelineItem.value, {
-    aactivitySeconds: activeTimelineItem.value.activitySeconds + calculateIdleSeconds(lastActiveAt)
+    aactivitySeconds: activeTimelineItem.value.activitySeconds + calculateIdleSeconds(lastActiveAt),
   })
 }
 
@@ -80,6 +79,6 @@ function generateTimelineItems() {
     hour,
     activityId: null,
     activitySeconds: 0,
-    isActive: false
+    isActive: false,
   }))
 }

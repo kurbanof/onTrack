@@ -1,7 +1,7 @@
 <script setup>
-import { computed } from 'vue';
+import { computed } from 'vue'
 import { isHourValid } from '@/validators'
-import { scrollToHour } from '@/timeline-items';
+import { scrollToHour } from '@/timeline-items'
 import { now } from '@/time'
 const props = defineProps({
   hour: {
@@ -21,9 +21,5 @@ const classes = computed(() => [
 const formattedHour = `${props.hour.toString().padStart(2, 0)}:00`
 </script>
 <template>
-  <a
-    href="#"
-    :class="classes"
-    @click.prevent="scrollToHour(hour)"
-  >{{ formattedHour }}</a>
+  <a href="#" :class="classes" @click.prevent="scrollToHour(hour)">{{ formattedHour }}</a>
 </template>

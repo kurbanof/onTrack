@@ -4,12 +4,11 @@ import {
   MINUTES_IN_HOUR,
   LOW_PERCENT,
   MEDIUM_PERCENT,
-  HUNDRED_PERCENT
+  HUNDRED_PERCENT,
 } from './constants'
 import { isNull } from '@/validators'
 
 export function formatSecondsWithSign(seconds) {
-
   return `${seconds >= 0 ? '+' : '-'}${formatSeconds(seconds)}`
 }
 export function formatSeconds(seconds) {
