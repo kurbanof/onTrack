@@ -45,7 +45,5 @@ export const now = ref(today())
 // export const now = ref(new Date())
 
 export function startCurrentDateTimer() {
-  now.value = today()
-
   setInterval(() => (now.value = today()), MILLISECONDS_IN_SECONDS)
 }
